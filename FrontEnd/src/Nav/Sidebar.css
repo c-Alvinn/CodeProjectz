@@ -1,0 +1,93 @@
+/* Sidebar.css */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -250px; /* Esconde a barra lateral inicialmente */
+    width: 250px;
+    height: 100%;
+    background-color: #31363F;
+    transition: left 0.3s ease;
+}
+
+.sidebar.open {
+    left: 0; /* Exibe a barra lateral quando aberta */
+}
+
+.sidebar-toggle {
+    position: absolute;
+    top: 10px;
+    right: -40px;
+    width: 40px;
+    height: 40px;
+    background-color: #31363F;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.icon {
+    width: 20px;
+    height: 2px;
+    background-color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.icon::before,
+.icon::after {
+    content: '';
+    width: 20px;
+    height: 2px;
+    background-color: white;
+    position: absolute;
+    top: -6px;
+    left: 0;
+}
+
+.icon::after {
+    top: 6px;
+}
+
+
+button {
+    width: 60%;
+    padding: 10px;
+    margin: 5px;
+    border: none;
+    border-radius: 4px;
+    background-color: #76ABAE;
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
+    border: none;
+    border-radius: 4px;
+    margin-top: 10px;
+    cursor: pointer;
+    flex-grow: 1; 
+  }
+
+  .botoes-menu{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+  }
+
+ /* Sidebar.css */
+.user-profile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 250px; /* Ajuste conforme necessário */
+    background-color: #31363F;
+}
+
+.user-profile img {
+    width: 160px; /* Ajuste conforme necessário */
+    height: 160px; /* Ajuste conforme necessário */
+    border-radius: 50%; /* Isso cria a forma de um círculo */
+    background-image: url('/src/assets/images/placeholder-image.jpg'); /* Substitua 'placeholder-image.jpg' pelo caminho da sua imagem */
+}
+

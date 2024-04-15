@@ -1,0 +1,23 @@
+/* Card.css */
+.card {
+    display: inline-block;
+    width: 260px; /* Largura do card */
+    padding: 10px;
+    margin: 10px;
+    vertical-align: top; /* Isso assegura que os cards alinhem pela parte superior, não pela linha de base */
+  }
+  
+  .card-image {
+    width: 100%; /* Ajusta a imagem para a largura do card */
+    height: 100%;
+  }
+  
+  .card-title {
+    margin: 10px 0; 
+    display: block;
+    padding: 10px 0;
+    text-align: center;
+    color: #fff; /* Texto branco para contraste */
+    text-decoration: none;
+  }
+  

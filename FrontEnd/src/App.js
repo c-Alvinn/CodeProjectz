@@ -6,6 +6,7 @@ import Sidebar from './Nav/Sidebar';
 import LoginPage from './Login/LoginPage';
 import SignUpPage from './Login/SignUpPage';
 import HomePage from './Home/HomePage'; // Importa a página inicial
+import AddScreen from './AddScreen/AddScreen';
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
           <Route path="/" element={<LoginPage />} /> {/* Rota para a página inicial */}
           <Route path="/signup" element={<SignUpPage />} /> {/* Rota para a página de cadastro */}
           <Route path="/home" element={<HomePage />} /> {/* Rota para a página de login */}
+          <Route path="/add" element={<AddScreen />} /> {/* Rota para a página de novo curso/projeto */}
         </Routes>
       </div>
     </Router>

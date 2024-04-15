@@ -1,0 +1,13 @@
+/* HomePage.css */
+.scroll-container {
+    overflow-x: auto; /* Ativa a barra de rolagem horizontal conforme necessário */
+    overflow-y: hidden; /* Previne a barra de rolagem vertical */
+    white-space: nowrap; /* Previne quebra de linha */
+    padding: 0px;
+    width: 100vw; /* Usa 100% da largura do elemento pai, não da viewport */
+    box-sizing: border-box; /* Inclui padding no cálculo da largura */
+  }
+  
+  h2{
+    margin-left: 30px;
+  }

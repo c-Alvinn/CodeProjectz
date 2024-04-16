@@ -1,7 +1,7 @@
 package com.codeprojectz.main.models;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.hateoas.RepresentationModel;
 
@@ -9,7 +9,10 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "conteudo")
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class ConteudoModel extends RepresentationModel<ConteudoModel> implements Serializable {
     private static final long serialVersionUID = 1L;
 

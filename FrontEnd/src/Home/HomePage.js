@@ -12,7 +12,7 @@ const cursos = [
     {
       "title": "Introdução ao JavaScript Moderno",
       "image": "https://bairesdev.mo.cloudinary.net/blog/2023/08/What-Is-JavaScript-Used-For.jpg?tx=w_1920,q_auto",
-      "link": "/cursos/javascript-moderno"
+      "link": "/View"
     },
     {
       "title": "Criando de APIs com Node.js",

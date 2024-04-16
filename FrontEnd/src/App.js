@@ -7,6 +7,7 @@ import LoginPage from './Login/LoginPage';
 import SignUpPage from './Login/SignUpPage';
 import HomePage from './Home/HomePage'; // Importa a página inicial
 import AddScreen from './AddScreen/AddScreen';
+import ViewScreen from './ViewScreen/ViewScreen'
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
           <Route path="/signup" element={<SignUpPage />} /> {/* Rota para a página de cadastro */}
           <Route path="/home" element={<HomePage />} /> {/* Rota para a página de login */}
           <Route path="/add" element={<AddScreen />} /> {/* Rota para a página de novo curso/projeto */}
+          <Route path="/view" element={<ViewScreen />} /> {/* Rota para a página de novo curso/projeto */}
         </Routes>
       </div>
     </Router>

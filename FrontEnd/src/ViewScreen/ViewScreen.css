@@ -1,0 +1,50 @@
+.article-screen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f5f5f5;
+    padding: 20px;
+  }
+  
+  .article-container {
+    width: 100%;
+    max-width: 800px;
+    background: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+  
+  .article-title {
+    margin-top: 0;
+    color: #333;
+  }
+  
+  .article-image {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 20px 0;
+  }
+  
+  .article-content {
+    color: #666;
+    line-height: 1.6;
+  }
+  
+  .article-link {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .article-link:hover {
+    background-color: #0056b3;
+  }
+  

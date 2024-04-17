@@ -1,7 +1,7 @@
 package com.codeprojectz.main.controllers;
 
 import com.codeprojectz.main.dtos.UsuarioRecordDto;
-import com.codeprojectz.main.models.UsuarioModel;
+import com.codeprojectz.main.models.Usuario;
 import com.codeprojectz.main.repositories.UsuarioRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.BeanUtils;
@@ -21,8 +21,8 @@ public class UsuarioController {
     UsuarioRepository usuarioRepository;
 
     @PostMapping("/criar")
-    public ResponseEntity<UsuarioModel> saveProduct(@RequestBody @Valid UsuarioRecordDto usuarioRecordDto) {
-        var usuarioModel = new UsuarioModel();
+    public ResponseEntity<Usuario> saveProduct(@RequestBody @Valid UsuarioRecordDto usuarioRecordDto) {
+        var usuarioModel = new Usuario();
 
         if (usuarioModel.getEmail().contains("@estudante.iftm.edu.br")) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);

@@ -17,7 +17,7 @@ import java.util.Date;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UsuarioModel extends RepresentationModel<UsuarioModel> implements Serializable {
+public class Usuario extends RepresentationModel<Usuario> implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id

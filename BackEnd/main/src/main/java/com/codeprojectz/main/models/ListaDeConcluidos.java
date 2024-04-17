@@ -11,17 +11,17 @@ import org.springframework.hateoas.RepresentationModel;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "artigo")
+@Table(name = "listaDeConcluidos")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class CategoriaModel extends RepresentationModel<CategoriaModel> implements Serializable {
+public class ListaDeConcluidos extends RepresentationModel<ListaDeConcluidos> implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int categoriaID;
-    private String nome;
-    private ArtigoModel artigoID;
+    private int listaDeConcluidosID;
+    private Artigo idArtigo;
+    private Usuario idUsuario;
 }

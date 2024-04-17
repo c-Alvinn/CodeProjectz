@@ -17,7 +17,7 @@ import java.util.Date;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ArtigoModel extends RepresentationModel<ArtigoModel> implements Serializable {
+public class Artigo extends RepresentationModel<Artigo> implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -26,7 +26,7 @@ public class ArtigoModel extends RepresentationModel<ArtigoModel> implements Ser
     private String titulo;
     private Date dataPostagem;
     private String descricao;
-    private UsuarioModel criador;
-    private ConteudoModel conteudo;
+    private Usuario criador;
+    private Conteudo conteudo;
     private int tipo;
 }

@@ -2,21 +2,27 @@ import React from 'react';
 import './ViewScreen.css';
 
 function ArticleScreen() {
-  // Dados mockados para o exemplo, normalmente você receberia isso como props ou faria uma chamada API
+  // Dados atualizados para incluir tags
   const articleData = {
     title: "Introdução ao Desenvolvimento Web",
-    image: "http://placekitten.com/200/300", // Link para uma imagem de placeholder
-    content: "Este é um curso intensivo de desenvolvimento web...",
-    link: "https://exemplo.com/curso-desenvolvimento-web"
+    instructor: "Gustavo Machado Pontes",
+    content: "Este é um curso intensivo de desenvolvimento web desenvolvido pelo aluno Gustavo Machado Pontes, no 5º Semestre do curso de Análise e Desenvolvimento de Sistemas",
+    link: "https://www.youtube.com/embed/01bCZPpSQxY?si=YxW6e6zzYY5ecVG5",
+    tags: ["Web Development", "Programming", "HTML/CSS", "JavaScript"] // Tags adicionadas
   };
 
   return (
     <div className="article-screen">
       <div className="article-container">
         <h1 className="article-title">{articleData.title}</h1>
-        <img src={articleData.image} alt={articleData.title} className="article-image" />
+        <h2 className="article-title">Instrutor: {articleData.instructor}</h2>
+        <iframe width="560" height="315" src={articleData.link} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         <p className="article-content">{articleData.content}</p>
-        <a href={articleData.link} className="article-link" target="_blank" rel="noopener noreferrer">Acesse o curso</a>
+        <div className="tags">
+          {articleData.tags.map(tag => (
+            <span className="tag" key={tag}>{tag}</span>
+          ))}
+        </div>
       </div>
     </div>
   );

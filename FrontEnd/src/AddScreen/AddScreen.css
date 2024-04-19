@@ -2,6 +2,8 @@
     display: flex;
     justify-content: center;
     padding: 20px;
+    height: 100vh; /* Isso garante que a tela preencha a altura da viewport */
+    align-items: center; /* Isso centraliza verticalmente o formulário na tela */
 }
 
 .add-form {
@@ -11,19 +13,36 @@
     padding: 30px;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    color: #fff; /* Texto branco para todos os textos dentro do formulário */
 }
 
 .add-form h2 {
     margin-bottom: 20px;
     text-align: center;
+    color: #76ABAE; /* Cor que combina com o botão para unidade visual */
 }
 
-.add-form input {
+.add-form input, .add-form select {
     width: 100%;
     padding: 10px;
     margin-bottom: 20px;
-    border: 1px solid #ddd;
+    background-color: #444; /* Um pouco mais claro que o fundo do formulário para destaque */
+    border: 1px solid #555; /* Borda sutil */
     border-radius: 4px;
+    color: #fff; /* Texto branco para fácil leitura */
+}
+
+.add-form select {
+    cursor: pointer; /* Indica que o select é um elemento interativo */
+    appearance: none; /* Remove a aparência padrão do navegador */
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D%2212%22%20height%3D%2212%22%20viewBox%3D%220%200%2012%2012%22%20fill%3D%22none%22%20xmlns%3D%22http://www.w3.org/2000/svg%22%3E%3Cpath%20d%3D%22M6%209L10.5%203H1.5L6%209Z%22%20fill%3D%22white%22%3E%3C/path%3E%3C/svg%3E');
+    background-repeat: no-repeat;
+    background-position: right 10px center; /* Posiciona o ícone no lado direito, centralizado verticalmente */
+    background-color: #444; /* Fundo para combinar com outros inputs */
+}
+
+.add-form input::placeholder, .add-form select::placeholder {
+    color: #aaa; /* Placeholder mais claro para contraste */
 }
 
 .add-form button {
@@ -34,6 +53,7 @@
     background-color: #76ABAE;
     color: white;
     cursor: pointer;
+    transition: background-color 0.3s; /* Suaviza a transição de cor ao passar o mouse */
 }
 
 .add-form button:hover {

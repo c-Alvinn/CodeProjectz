@@ -22,14 +22,9 @@ public class UsuarioController {
 
     @PostMapping("/criar")
     public ResponseEntity<Usuario> saveProduct(@RequestBody @Valid UsuarioRecordDto usuarioRecordDto) {
-        var usuarioModel = new Usuario();
-
-        if (usuarioModel.getEmail().contains("@estudante.iftm.edu.br")) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
-        }
-
-        BeanUtils.copyProperties(usuarioRecordDto, usuarioModel);
-        return ResponseEntity.status(HttpStatus.CREATED).body(usuarioRepository.save(usuarioModel));
+        var usuario = new Usuario();
+        BeanUtils.copyProperties(usuarioRecordDto, usuario);
+        return ResponseEntity.status(HttpStatus.CREATED).body(usuarioRepository.save(usuario));
     }
 
 

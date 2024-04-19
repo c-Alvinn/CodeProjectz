@@ -11,7 +11,7 @@ import org.springframework.hateoas.RepresentationModel;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "artigo")
+@Table(name = "categoria")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -23,5 +23,4 @@ public class Categoria extends RepresentationModel<Categoria> implements Seriali
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int categoriaID;
     private String nome;
-    private Artigo artigoID;
 }

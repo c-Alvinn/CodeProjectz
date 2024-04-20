@@ -1,10 +1,6 @@
 package com.codeprojectz.main.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Table;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.hateoas.RepresentationModel;
 
@@ -26,7 +22,12 @@ public class Artigo extends RepresentationModel<Artigo> implements Serializable 
     private String titulo;
     private Date dataPostagem;
     private String descricao;
-    private Usuario criador;
-    private Conteudo conteudo;
     private int tipo;
+    @ManyToOne
+    private Categoria categoria;
+    @ManyToOne
+    private Usuario criador;
+    @OneToOne
+    private Conteudo conteudo;
+
 }

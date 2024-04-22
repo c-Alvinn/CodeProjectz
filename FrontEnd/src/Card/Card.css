@@ -1,23 +1,38 @@
 /* Card.css */
 .card {
-    display: inline-block;
-    width: 260px; /* Largura do card */
-    padding: 10px;
-    margin: 10px;
-    vertical-align: top; /* Isso assegura que os cards alinhem pela parte superior, não pela linha de base */
-  }
-  
-  .card-image {
-    width: 100%; /* Ajusta a imagem para a largura do card */
-    height: 100%;
-  }
-  
-  .card-title {
-    margin: 10px 0; 
-    display: block;
-    padding: 10px 0;
-    text-align: center;
-    color: #fff; /* Texto branco para contraste */
-    text-decoration: none;
-  }
-  
+  display: inline-block;
+  width: 260px;
+  /* Largura do card */
+  padding: 10px;
+  margin: 10px;
+  vertical-align: top;
+  /* Isso assegura que os cards alinhem pela parte superior, não pela linha de base */
+}
+
+.card-image {
+  width: 100%;
+  height: 150px;
+}
+
+/* Card.css */
+.card-title {
+  margin: 10px 0;
+  display: block;
+  padding: 10px 0;
+  text-align: center;
+  color: #fff; /* Texto branco para contraste */
+  text-decoration: none;
+  white-space: nowrap; /* Impede que o texto envolva para uma nova linha */
+  overflow: hidden; /* Esconde texto que transborda */
+  text-overflow: ellipsis; /* Adiciona "..." ao texto que transborda */
+}
+
+
+.card-category {
+  padding: 5px 10px;
+  background-color: #555; 
+  color: #eee; 
+  border-radius: 5px; 
+  font-size: 0.8em; 
+}
+

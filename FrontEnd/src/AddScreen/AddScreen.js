@@ -3,15 +3,18 @@ import './AddScreen.css';
 
 function AddScreen() {
     const [title, setTitle] = useState('');
-    const [image, setImage] = useState('');
-    const [link, setLink] = useState('');
+    const [description, setDescription] = useState('');
+    const [image, setImage] = useState('');  // Se referindo ao conteúdo visual associado
+    const [link, setLink] = useState('');  // URL de um vídeo ou recurso relacionado
     const [category, setCategory] = useState('');
     const [customCategory, setCustomCategory] = useState('');
+    const [postDate, setPostDate] = useState('');  // Data de postagem pode ser definida no frontend ou backend
 
     const handleSubmit = (e) => {
         e.preventDefault();
         const finalCategory = category === "custom" ? customCategory : category;
-        console.log({ title, image, link, category: finalCategory });
+        // Aqui você incluiria a lógica para enviar esses dados ao backend
+        console.log({ title, description, image, link, category: finalCategory, postDate });
     };
 
     return (
@@ -25,6 +28,11 @@ function AddScreen() {
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
                 />
+                <textarea
+                    placeholder="Descrição"
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                />
                 <input
                     type="text"
                     placeholder="Link da Imagem"
@@ -33,11 +41,15 @@ function AddScreen() {
                 />
                 <input
                     type="text"
-                    placeholder="Link do Curso/Projeto"
+                    placeholder="Link do Conteúdo (ex: URL do Vídeo)"
                     value={link}
                     onChange={(e) => setLink(e.target.value)}
                 />
-
+                <input
+                    type="date"
+                    value={postDate}
+                    onChange={(e) => setPostDate(e.target.value)}
+                />
                 <select
                     value={category}
                     onChange={(e) => setCategory(e.target.value)}

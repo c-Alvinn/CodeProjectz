@@ -8,8 +8,9 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "conteudo")
-@Getter
-@Setter
+@EqualsAndHashCode(callSuper=true)
+@Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class Conteudo extends RepresentationModel<Conteudo> implements Serializable {

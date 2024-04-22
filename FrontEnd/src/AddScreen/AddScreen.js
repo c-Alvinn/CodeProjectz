@@ -1,20 +1,56 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './AddScreen.css';
+import axios from 'axios';
 
 function AddScreen() {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
-    const [image, setImage] = useState('');  // Se referindo ao conteúdo visual associado
-    const [link, setLink] = useState('');  // URL de um vídeo ou recurso relacionado
+    const [image, setImage] = useState('');  
+    const [link, setLink] = useState('');  
     const [category, setCategory] = useState('');
     const [customCategory, setCustomCategory] = useState('');
-    const [postDate, setPostDate] = useState('');  // Data de postagem pode ser definida no frontend ou backend
+    const [postDate, setPostDate] = useState('');
+    const [categories, setCategories] = useState([]);
+    
+    useEffect(() => {
+        fetchCategories();
+    }, []);
+
+    const fetchCategories = () => {
+        axios.get('http://localhost:8080/api/categorias')
+            .then(response => {
+                setCategories(response.data);
+            })
+            .catch(error => {
+                console.error('Erro ao buscar categorias:', error);
+            });
+    };
+
+    const handleAddCategory = () => {
+        if (customCategory.trim() !== '') {
+            axios.post('http://localhost:8080/api/categorias', { nome: customCategory })
+                .then(response => {
+                    console.log('Categoria adicionada com sucesso:', response.data);
+                    fetchCategories();  // Atualiza a lista de categorias após adicionar uma nova
+                    setCustomCategory(''); // Limpa o campo de categoria personalizada
+                })
+                .catch(error => {
+                    console.error('Erro ao adicionar categoria:', error);
+                });
+        }
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
         const finalCategory = category === "custom" ? customCategory : category;
-        // Aqui você incluiria a lógica para enviar esses dados ao backend
-        console.log({ title, description, image, link, category: finalCategory, postDate });
+        const formData = {
+            titulo: title,
+            descricao: description,
+            link : link,
+            categoria: finalCategory,
+            dataPostagem: postDate,
+        };
+        console.log(formData);
     };
 
     return (
@@ -55,19 +91,22 @@ function AddScreen() {
                     onChange={(e) => setCategory(e.target.value)}
                 >
                     <option value="">Selecione a Categoria</option>
-                    <option value="Programação">Programação</option>
-                    <option value="UI/UX">UI/UX</option>
-                    <option value="Organização">Organização</option>
+                    {categories.map(cat => (
+                        <option key={cat.id} value={cat.nome}>{cat.nome}</option>
+                    ))}
                     <option value="custom">Outra (especifique)</option>
                 </select>
                 
                 {category === "custom" && (
-                    <input
-                        type="text"
-                        placeholder="Escreva sua categoria"
-                        value={customCategory}
-                        onChange={(e) => setCustomCategory(e.target.value)}
-                    />
+                    <div>
+                        <input
+                            type="text"
+                            placeholder="Escreva sua categoria"
+                            value={customCategory}
+                            onChange={(e) => setCustomCategory(e.target.value)}
+                        />
+                        <button type="button" onClick={handleAddCategory}>Adicionar Categoria</button>
+                    </div>
                 )}
 
                 <button type="submit">Adicionar</button>

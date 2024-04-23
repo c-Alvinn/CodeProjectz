@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     padding: 20px;
-    height: 100vh; /* Isso garante que a tela preencha a altura da viewport */
+    margin-top: 35vh;
     align-items: center; /* Isso centraliza verticalmente o formulário na tela */
 }
 
@@ -23,7 +23,8 @@
 }
 
 .add-form input, .add-form select {
-    width: 100%;
+    width: 95%;
+
     padding: 10px;
     margin-bottom: 20px;
     background-color: #444; /* Um pouco mais claro que o fundo do formulário para destaque */
@@ -58,4 +59,20 @@
 
 .add-form button:hover {
     background-color: #568B8E;
+}
+
+.add-descricao {
+    width: 95%;
+    height: 150px; /* Altura suficiente para ter espaço para escrever */
+    padding: 10px; 
+    margin-bottom: 20px; /* Distância entre elementos para consistência */
+    background-color: #444; /* Combina com os outros campos */
+    border: 1px solid #555; /* Mantém a consistência das bordas */
+    border-radius: 4px; 
+    color: #fff; /* Texto branco para fácil leitura */
+    resize: vertical; /* Permite redimensionamento vertical */
+}
+
+.add-descricao::placeholder {
+    color: #aaa; /* Placeholder mais claro para contraste */
 }

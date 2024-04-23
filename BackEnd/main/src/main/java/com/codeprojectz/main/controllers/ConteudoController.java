@@ -20,7 +20,7 @@ public class ConteudoController {
     ConteudoService conteudoService;
 
     @PostMapping
-    public ResponseEntity<?> uploadFile(@RequestParam("file") MultipartFile file) throws IOException {
+    public ResponseEntity<?> uploadFile(@RequestParam("conteudo") MultipartFile file) throws IOException {
         String uploadFile = conteudoService.uploadFile(file);
 
         return ResponseEntity.status(HttpStatus.OK).body(uploadFile);

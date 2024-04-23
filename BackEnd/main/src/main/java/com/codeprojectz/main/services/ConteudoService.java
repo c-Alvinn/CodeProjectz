@@ -32,7 +32,7 @@ public class ConteudoService {
 
 
     public byte[] downloadFile(String fileName){
-        Optional<Conteudo> fileFromDb = conteudoRepository.findByName(fileName);
+        Optional<Conteudo> fileFromDb = conteudoRepository.findByNomeArquivo(fileName);
         byte[] fileInbytes = FileUtils.decompressFile(fileFromDb.get().getConteudo());
         return fileInbytes;
     }

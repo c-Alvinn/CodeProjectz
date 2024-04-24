@@ -10,8 +10,9 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 import java.util.Optional;
+import java.util.List;
 
-import org.hibernate.mapping.List;
+//import org.hibernate.mapping.List;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -37,6 +38,12 @@ public class CategoriaController {
         return ResponseEntity.status(HttpStatus.CREATED).body(categoriaRepository.save(categoria));
     }
 
+    @GetMapping
+    public ResponseEntity<List<Categoria>> getAll() {
+        List<Categoria> lista = categoriaRepository.findAll();
+        return ResponseEntity.status(HttpStatus.OK).body(lista);
+    }
+
     @GetMapping("/listar")
     public ResponseEntity<List<Categoria>> getAllCategorias(){
         List<Categoria> categoriaList = categoriaRepository.findAll();
@@ -46,7 +53,7 @@ public class CategoriaController {
                 categoria.add(linkTo(methodOn(CategoriaController.class).getOneCategoria(id)).withSelfRel());
             }
         }
-        return ResponseEntity.status(HttpStatus.OK.body(categoriaList));
+        return ResponseEntity.status(HttpStatus.OK).body(categoriaList);
     }
 
     @GetMapping("/{id}")

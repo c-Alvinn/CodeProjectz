@@ -15,8 +15,8 @@ public record ArtigoRecordDto(
         @NotBlank String descricao,
         @NotNull Usuario criador,
         @NotNull Conteudo conteudo,
-        @Min(value = 1, message = "O tipo deve ser 1 para artigo ou 2 para vídeo")
-        @Max(value = 2, message = "O tipo deve ser 1 para artigo ou 2 para vídeo")
+        @Min(value = 1, message = "O tipo deve ser 1 para projeto ou 2 para curso")
+        @Max(value = 2, message = "O tipo deve ser 1 para projeto ou 2 para curso")
         int tipo
 ) {
 }

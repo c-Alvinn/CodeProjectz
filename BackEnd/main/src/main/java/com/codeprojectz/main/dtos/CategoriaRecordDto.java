@@ -6,3 +6,4 @@ public record CategoriaRecordDto(
         @NotBlank String nome
 ) {
 }
+//fon

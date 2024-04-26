@@ -22,12 +22,14 @@ public class Artigo extends RepresentationModel<Artigo> implements Serializable 
     private String titulo;
     private Date dataPostagem;
     private String descricao;
-    private int tipo;
     @ManyToOne
+    @JoinColumn(name = "categoriaID")
     private Categoria categoria;
     @ManyToOne
+    @JoinColumn(name = "usuarioID")
     private Usuario criador;
     @OneToOne
+    @JoinColumn(name = "conteudoID")
     private Conteudo conteudo;
 
 }

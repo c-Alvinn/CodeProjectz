@@ -73,4 +73,16 @@ public class UsuarioController {
         BeanUtils.copyProperties(usuarioRecordDto, usuarioModel);
         return ResponseEntity.status(HttpStatus.OK).body(usuarioRepository.save(usuarioModel));
     }
+
+    @GetMapping("/login")
+    public ResponseEntity<Usuario> login(@RequestBody UsuarioRecordDto usuarioRecordDto){
+
+        var user = usuarioRepository.findByEmailAndSenha(usuarioRecordDto.email(), usuarioRecordDto.senha());
+
+        if(user==null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
+
+        return ResponseEntity.status(HttpStatus.OK).body(user);
+    }
 }

@@ -21,6 +21,7 @@ public class Conteudo extends RepresentationModel<Conteudo> implements Serializa
     private int conteudoID;
     private String nomeArquivo;
     @Lob
+    @Column(columnDefinition = "longblob")
     private byte[] conteudo;
     private String tipoArquivo;
 }

@@ -5,7 +5,7 @@ import './LoginPage.css';
 
 function LoginPage() {
     const navigate = useNavigate();
-    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
 
@@ -13,7 +13,7 @@ function LoginPage() {
         event.preventDefault();
 
         const userData = {
-            username, // Usuário
+            email, // Email
             password, // Senha
         };
 
@@ -45,9 +45,9 @@ function LoginPage() {
                 <form className="login-form" onSubmit={handleLogin}>
                     <input
                         type="text"
-                        placeholder="Usuário"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
+                        placeholder="Email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                     />
                     <input
                         type="password"

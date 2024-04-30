@@ -5,7 +5,9 @@ import './LoginPage.css';
 
 function SignUpPage() {
   const [nome, setNome] = useState('');
+  const [sobrenome, setSobrenome] = useState('');
   const [email, setEmail] = useState('');
+  const [dataNascimento, setDataNascimento] = useState('');
   const [password, setPassword] = useState('');
   const [passwordRepeat, setPasswordRepeat] = useState('');
   const [errorMessage, setErrorMessage] = useState(''); // Estado para mensagens de erro
@@ -17,7 +19,7 @@ function SignUpPage() {
   };
 
   const validateFields = () => {
-    if (!nome || !email || !password || !passwordRepeat) {
+    if (!nome || !sobrenome || !email || !dataNascimento || !password || !passwordRepeat) {
       setErrorMessage('Todos os campos são obrigatórios.');
       clearFields(); // Limpa os campos ao ocorrer erro
       return false;
@@ -41,10 +43,14 @@ function SignUpPage() {
     }
 
     const userData = {
-      usuario: nome,
+      nome: nome,
+      sobrenome: sobrenome,
       email: email,
+      dataNascimento: dataNascimento,
       senha: password,
     };
+
+    console.log('Dados do formulário:', userData); // Mostra todos os dados do formulário no console
 
     axios
       .post('http://localhost:8080/usuario/criar', userData)
@@ -66,9 +72,21 @@ function SignUpPage() {
         <form className="login-form" onSubmit={handleCadastro}>
           <input
             type="text"
-            placeholder="Usuário"
+            placeholder="Nome"
             value={nome}
             onChange={(e) => setNome(e.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="Sobrenome"
+            value={sobrenome}
+            onChange={(e) => setSobrenome(e.target.value)}
+          />
+          <input
+            type="date"
+            placeholder="Data de Nascimento"
+            value={dataNascimento}
+            onChange={(e) => setDataNascimento(e.target.value)}
           />
           <input
             type="email"

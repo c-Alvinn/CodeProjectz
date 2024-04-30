@@ -68,7 +68,7 @@ public class ArtigoController {
 
     @GetMapping("/{nome}")
     public ResponseEntity<List<Artigo>> findByNome(@PathVariable(value = "nome") String nome){
-        List<Artigo> lista = artigoRepository.findByCategoriaNome(nome);
+        List<Artigo> lista = artigoRepository.findByCategoriaNomeLike(nome);
         if (lista.isEmpty()) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }

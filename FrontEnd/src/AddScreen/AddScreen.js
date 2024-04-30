@@ -1,20 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import './AddScreen.css';
 import axios from 'axios';
-import MarkdownIt from 'markdown-it';
-import MdEditor from 'react-markdown-editor-lite';
-import 'react-markdown-editor-lite/lib/index.css';
 
 function AddScreen() {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
-    const [image, setImage] = useState(null);  // Armazena o arquivo
-    const [markdownContent, setMarkdownContent] = useState('');
+    const [image, setImage] = useState(null);  // Armazena o arquivo da imagem
+    const [markdownFile, setMarkdownFile] = useState(null);  // Armazena o arquivo Markdown
     const [category, setCategory] = useState('');
     const [customCategory, setCustomCategory] = useState('');
     const [categories, setCategories] = useState([]);
-
-    const mdParser = new MarkdownIt(/* Markdown-it options */);
 
     useEffect(() => {
         fetchCategories();
@@ -32,7 +27,13 @@ function AddScreen() {
 
     const handleImageChange = (e) => {
         if (e.target.files.length > 0) {
-            setImage(e.target.files[0]);  // Pega o primeiro arquivo
+            setImage(e.target.files[0]);
+        }
+    };
+
+    const handleMarkdownChange = (e) => {
+        if (e.target.files.length > 0) {
+            setMarkdownFile(e.target.files[0]); // Pega o arquivo Markdown
         }
     };
 
@@ -40,9 +41,8 @@ function AddScreen() {
         if (customCategory.trim() !== '') {
             axios.post('http://localhost:8080/categoria', { nome: customCategory })
                 .then(response => {
-                    console.log('Categoria adicionada com sucesso:', response.data);
-                    fetchCategories();  // Atualiza a lista de categorias após adicionar uma nova
-                    setCustomCategory('');  // Limpa o campo de categoria personalizada
+                    fetchCategories();
+                    setCustomCategory(''); 
                 })
                 .catch(error => {
                     console.error('Erro ao adicionar categoria:', error);
@@ -54,17 +54,16 @@ function AddScreen() {
         e.preventDefault();
         const finalCategory = category === "custom" ? customCategory : category;
 
-        // Usa FormData para enviar dados do formulário com arquivos
         const formData = new FormData();
         formData.append("titulo", title);
         formData.append("descricao", description);
-        formData.append("imagem", image);  // Adiciona a imagem ao FormData
-        formData.append("conteudoMarkdown", markdownContent);
+        formData.append("imagem", image); 
+        formData.append("markdown", markdownFile); // Adiciona o arquivo Markdown
         formData.append("categoria", finalCategory);
 
         axios.post('http://localhost:8080/artigos', formData, {
             headers: {
-                'Content-Type': 'multipart/form-data',  // Importante para upload de arquivos
+                'Content-Type': 'multipart/form-data',
             },
         })
         .then(response => {
@@ -79,7 +78,7 @@ function AddScreen() {
         <div className="add-screen">
             <form className="add-form" onSubmit={handleSubmit}>
                 <h2>Adicionar Novo Curso/Projeto</h2>
-                
+
                 <input
                     type="text"
                     placeholder="Título"
@@ -87,25 +86,27 @@ function AddScreen() {
                     onChange={(e) => setTitle(e.target.value)}
                 />
                 <textarea
-                    className='add-descricao'
+                    className="add-descricao"
                     placeholder="Descrição"
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
                 />
-                
-                {/* Campo para upload de arquivo */}
+
+                {/* Campo para upload de imagem com legenda */}
+                <label>Insira aqui sua imagem:</label>
                 <input
                     type="file"
-                    accept="image/*"  // Apenas imagens
+                    accept="image/*"  
                     onChange={handleImageChange}
                 />
-                
-                <MdEditor
-                    value={markdownContent}
-                    style={{ height: "400px"}}
-                    renderHTML={(text) => mdParser.render(text)}
-                    onChange={({ text }) => setMarkdownContent(text)}
-                /> <br></br>
+
+                {/* Campo para upload de arquivo Markdown com legenda */}
+                <label>Insira aqui seu arquivo Markdown:</label>
+                <input
+                    type="file"
+                    accept=".md"  // Apenas arquivos Markdown
+                    onChange={handleMarkdownChange}
+                />
 
                 <select
                     value={category}

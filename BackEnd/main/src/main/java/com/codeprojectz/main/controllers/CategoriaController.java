@@ -6,17 +6,13 @@ import com.codeprojectz.main.repositories.CategoriaRepository;
 
 import jakarta.validation.Valid;
 
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
-
-import java.util.Optional;
 import java.util.List;
 
-//import org.hibernate.mapping.List;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -44,25 +40,22 @@ public class CategoriaController {
         return ResponseEntity.status(HttpStatus.OK).body(lista);
     }
 
-    @GetMapping("/listar")
-    public ResponseEntity<List<Categoria>> getAllCategorias(){
-        List<Categoria> categoriaList = categoriaRepository.findAll();
-        if (!categoriaList.isEmpty()) {
-            for(Categoria categoria : categoriaList) {
-                int id = categoria.getCategoriaID();
-                categoria.add(linkTo(methodOn(CategoriaController.class).getOneCategoria(id)).withSelfRel());
-            }
+    @GetMapping("/{nome}")
+    public ResponseEntity<Categoria> findByNome(@PathVariable(value = "nome") String nome){
+        var categoria = categoriaRepository.findByNome(nome);
+        if (categoria == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }
-        return ResponseEntity.status(HttpStatus.OK).body(categoriaList);
+        return ResponseEntity.status(HttpStatus.OK).body(categoria);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Object> getOneCategoria(@PathVariable(value = "id") Integer id) {
-        Optional<Categoria> categoria0 = categoriaRepository.findById(id);
-        if (categoria0.isEmpty()){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Categorias not found.");
+    @DeleteMapping("/{nome}")
+    public ResponseEntity<Categoria> deleteCategoria(@PathVariable(value = "nome") String nome){
+        var categoria = categoriaRepository.findByNome(nome);
+        if (categoria == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }
-        categoria0.get().add(linkTo(methodOn(CategoriaController.class).getAllCategorias()).withRel("Categoriaa List"));
-        return ResponseEntity.status(HttpStatus.OK).body(categoria0.get());
+        categoriaRepository.delete(categoria);
+        return ResponseEntity.status(HttpStatus.OK).body(null);
     }
 }

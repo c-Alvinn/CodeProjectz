@@ -1,5 +1,5 @@
-// LoginPage.js
 import React, { useState } from 'react';
+import axios from 'axios'; // Importa Axios para fazer requisições HTTP
 import { useNavigate } from 'react-router-dom';
 import './LoginPage.css';
 
@@ -11,34 +11,35 @@ function LoginPage() {
 
     const handleLogin = (event) => {
         event.preventDefault();
-        // Simulando um banco de dados
-        const users = {
-            admin: "1234567",
-            augustio: "AmoA-CC",
-            alvin: "CalvoAos16"
+
+        const userData = {
+            username, // Usuário
+            password, // Senha
         };
 
-        // Verificando se o usuário existe e a senha está correta
-        if (users.hasOwnProperty(username) && users[username] === password) {
-            setError('');
-            // Redireciona para a próxima página após o login bem-sucedido
-            navigate('/home');
-
-        } else {
-            setError('Usuário ou senha incorretos.');
-        }
+        axios.post('http://localhost:8080/usuario/login', userData) // Substitua pelo seu endpoint de login
+            .then((response) => {
+                if (response.status === 200) { // Verifica se a resposta foi bem-sucedida
+                    setError(''); // Limpa erros anteriores
+                    navigate('/home'); // Redireciona para a página "home"
+                }
+            })
+            .catch((error) => {
+                if (error.response && error.response.status === 400) {
+                    setError('Usuário ou senha incorretos.'); // Mensagem de erro para login incorreto
+                } else {
+                    setError('Erro ao fazer login. Tente novamente mais tarde.'); // Erro geral
+                }
+            });
     };
 
-    function handleSignUpClick() {
+    const handleSignUpClick = () => {
         navigate('/signup'); // Navega para a tela de cadastro
-      }
-    
+    };
 
     return (
         <div className="container">
-            <div className="left-section">
-                {/* Placeholder para a imagem do lado esquerdo */}
-            </div>
+            <div className="left-section">{/* Placeholder para a imagem do lado esquerdo */}</div>
             <div className="right-section">
                 <h1 className="login-title">Login</h1>
                 <form className="login-form" onSubmit={handleLogin}>
@@ -54,11 +55,13 @@ function LoginPage() {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                     />
-                    <div className='botoes'>
+                    <div className="botoes">
                         <button type="submit">Login</button>
-                        <button type="button" onClick={handleSignUpClick}>Não tem cadastro? Clique aqui</button>
+                        <button type="button" onClick={handleSignUpClick}>
+                            Não tem cadastro? Clique aqui
+                        </button>
                     </div>
-                    {error && <p className="error-message">{error}</p>}
+                    {error && <p className="error-message">{error}</p>} {/* Exibe mensagem de erro se houver */}
                 </form>
             </div>
         </div>

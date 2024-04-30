@@ -3,76 +3,96 @@
     justify-content: center;
     padding: 20px;
     margin-top: 35vh;
-    align-items: center; /* Isso centraliza verticalmente o formulário na tela */
+    align-items: center; /* Centraliza verticalmente o formulário */
 }
 
 .add-form {
     max-width: 500px;
     width: 100%;
-    background: #333;
+    background: #333; /* Fundo escuro */
     padding: 30px;
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    color: #fff; /* Texto branco para todos os textos dentro do formulário */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    color: #fff; /* Texto branco */
 }
 
 .add-form h2 {
     margin-bottom: 20px;
     text-align: center;
-    color: #76ABAE; /* Cor que combina com o botão para unidade visual */
+    color: #76ABAE; /* Cor que combina com o botão */
 }
 
-.add-form input, .add-form select {
-    width: 95%;
+.add-form label {
+    color: #aaa; /* Cor para legendas, contrastando com o fundo */
+    font-weight: bold; /* Destaca o texto da legenda */
+    margin-bottom: 10px; /* Espaço abaixo do rótulo */
+    display: block; /* Mantém cada legenda em uma linha separada */
+}
 
+.add-form input, .add-form select, .add-form textarea {
+    width: 95%; /* Tamanho dos campos */
     padding: 10px;
     margin-bottom: 20px;
-    background-color: #444; /* Um pouco mais claro que o fundo do formulário para destaque */
-    border: 1px solid #555; /* Borda sutil */
-    border-radius: 4px;
-    color: #fff; /* Texto branco para fácil leitura */
+    background-color: #444; /* Fundo dos campos */
+    border: 1px solid #555; /* Borda */
+    border-radius: 4px; 
+    color: #fff; /* Texto branco */
 }
 
 .add-form select {
-    cursor: pointer; /* Indica que o select é um elemento interativo */
-    appearance: none; /* Remove a aparência padrão do navegador */
-    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D%2212%22%20height%3D%2212%22%20viewBox%3D%220%200%2012%2012%22%20fill%3D%22none%22%20xmlns%3D%22http://www.w3.org/2000/svg%22%3E%3Cpath%20d%3D%22M6%209L10.5%203H1.5L6%209Z%22%20fill%3D%22white%22%3E%3C/path%3E%3C/svg%3E');
+    cursor: pointer; 
+    appearance: none; /* Remove aparência padrão do navegador */
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D%2212%22%20height%3D%2212%22%20viewBox%3D%220%200%2012%2012%22%20fill%3D%22none%22%20xmlns%3D%22http://www.w3.org/2000/svg%22%3E%3Cpath%20d%3D%22M6%209L10.5%203H1.5L6%209Z%22%20fill%3D%22white%22%3E%3C/path%3E');
     background-repeat: no-repeat;
-    background-position: right 10px center; /* Posiciona o ícone no lado direito, centralizado verticalmente */
-    background-color: #444; /* Fundo para combinar com outros inputs */
+    background-position: right 10px center; /* Posição do ícone no select */
+    background-color: #444; /* Fundo do select */
 }
 
-.add-form input::placeholder, .add-form select::placeholder {
-    color: #aaa; /* Placeholder mais claro para contraste */
+.add-form input::placeholder, .add-form select::placeholder, .add-form textarea::placeholder {
+    color: #aaa; /* Cor dos placeholders */
 }
 
 .add-form button {
     width: 100%;
-    padding: 10px 20px;
+    padding: 10px 20px; 
     border: none;
     border-radius: 4px;
-    background-color: #76ABAE;
-    color: white;
+    background-color: #76ABAE; /* Cor do botão */
+    color: white; /* Cor do texto do botão */
     cursor: pointer;
-    transition: background-color 0.3s; /* Suaviza a transição de cor ao passar o mouse */
+    transition: background-color 0.3s; /* Transição suave */
 }
 
 .add-form button:hover {
-    background-color: #568B8E;
+    background-color: #568B8E; /* Cor ao passar o mouse */
 }
 
 .add-descricao {
-    width: 95%;
-    height: 150px; /* Altura suficiente para ter espaço para escrever */
-    padding: 10px; 
-    margin-bottom: 20px; /* Distância entre elementos para consistência */
-    background-color: #444; /* Combina com os outros campos */
-    border: 1px solid #555; /* Mantém a consistência das bordas */
-    border-radius: 4px; 
-    color: #fff; /* Texto branco para fácil leitura */
+    width: 95%; 
+    height: 150px; /* Altura suficiente para o textarea */
+    padding: 10px;
+    margin-bottom: 20px; 
+    background-color: #444; 
+    border: 1px solid #555; 
+    border-radius: 4px;
+    color: #fff; 
     resize: vertical; /* Permite redimensionamento vertical */
 }
 
-.add-descricao::placeholder {
-    color: #aaa; /* Placeholder mais claro para contraste */
+.add-form select {
+    width: 95%; /* Mesma largura dos outros campos */
+    padding: 10px; /* Espaço interno */
+    margin-bottom: 20px; /* Espaço abaixo do select */
+    background-color: #444; /* Fundo consistente com o resto do formulário */
+    border: 1px solid #555; /* Borda sutil */
+    border-radius: 4px; /* Borda arredondada */
+    color: #fff; /* Texto branco */
+    cursor: pointer; /* Indicador de interatividade */
+    appearance: none; /* Remove aparência padrão do navegador */
+
+    /* Adicionando uma seta para baixo como ícone de fundo */
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24' fill='white'><path d='M7 10l5 5 5-5z'/></svg>");
+    background-repeat: no-repeat; /* Para evitar repetição */
+    background-position: right 10px center; /* Posição da seta */
+    background-size: 12px; /* Tamanho do ícone para garantir que seja visível, mas não grande demais */
 }

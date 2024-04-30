@@ -9,8 +9,8 @@ public record ArtigoRecordDto(
         @NotBlank String titulo,
         @NotNull Date dataPostagem,
         @NotBlank String descricao,
-        @NotNull int categoriaId,
-        @NotNull int criadorId,
-        @NotNull int conteudoId
+        @NotNull int categoriaID,
+        @NotNull int criadorID,
+        @NotNull int conteudoID
 ) {
 }

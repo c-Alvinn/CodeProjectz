@@ -10,4 +10,6 @@ import java.util.Optional;
 public interface ConteudoRepository extends JpaRepository<Conteudo, Integer> {
 
     Optional<Conteudo> findByNomeArquivo(String nomeArquivo);
+
+    Conteudo findByConteudoID(Integer conteudoID);
 }

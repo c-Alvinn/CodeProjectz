@@ -38,9 +38,9 @@ public class ArtigoController {
     public ResponseEntity<Artigo> addArtigo(@RequestBody @Valid ArtigoRecordDto artigoRecordDto) {
         var artigo = new Artigo();
         BeanUtils.copyProperties(artigoRecordDto, artigo);
-        artigo.setCategoria(categoriaRepository.getReferenceById(artigoRecordDto.categoriaId()));
-        artigo.setCriador(usuarioRepository.getReferenceById(artigoRecordDto.criadorId()));
-        artigo.setConteudo(conteudoRepository.getReferenceById(artigoRecordDto.conteudoId()));
+        artigo.setCategoria(categoriaRepository.findByCategoriaID(artigoRecordDto.categoriaID()));
+        artigo.setCriador(usuarioRepository.findByUserID(artigoRecordDto.criadorID()));
+        artigo.setConteudo(conteudoRepository.findByConteudoID(artigoRecordDto.conteudoID()));
         return ResponseEntity.status(HttpStatus.CREATED).body(artigoRepository.save(artigo));
     }
 

@@ -3,15 +3,25 @@
 logs
 **/*.backup.*
 **/*.back.*
+npm-debug.log*
 
-node_modules
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
 bower_components
 
+# testing
+/coverage
 *.sublime*
+
+# production
+/build
 
 psd
 thumb
 sketch
+
 
 .vscode/*
 !.vscode/settings.json

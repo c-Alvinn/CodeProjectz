@@ -10,7 +10,7 @@ html {
   align-items: center;
   height: 100vh;
   background-color: #222831;
-  color: aliceblue;
+  color: #f0f8ff;
 }
 
 .container {
@@ -44,7 +44,7 @@ html {
   align-items: center;
   justify-content: center;
   margin: 10px;
-  overflow: scroll;
+  overflow: hidden;
 
 }
 
@@ -67,41 +67,63 @@ html {
 
 .login-form button {
   width: 100%;
+  /* Faz com que cada botão preencha o espaço total da div pai */
   padding: 10px;
-  margin: 5px;
+  margin: 5px 0;
+  /* Garante que haja um pequeno espaço vertical entre os botões */
   border: none;
   border-radius: 4px;
   background-color: #76ABAE;
   color: black;
   cursor: pointer;
+  font-size: 0.7em;
+  /* Torna o tamanho da fonte um pouco menor */
+  text-align: center;
+  /* Garante que o texto esteja centralizado */
+  white-space: normal;
+  /* Permite que o texto quebre em mais de uma linha se necessário */
+  overflow: visible;
+  /* Esconde qualquer texto que exceda o botão */
+
 }
 
 .login-form button:hover {
   background-color: #70A0A0;
+  /* Efeito de hover para os botões */
 }
 
-.login-form .register-link {
-  margin-top: 15px;
-  color: aliceblue;
-  text-decoration: none;
-}
-
-.login-form .register-link:hover {
-  text-decoration: underline;
-}
 .botoes {
   display: flex;
   justify-content: space-between;
+  /* Espaça igualmente os botões */
   align-items: center;
+  width: 100%;
+  /* Faz com que a div botoes ocupe a largura total da div pai */
 }
 
 .botoes button {
-  padding: 15px;
-  border: none;
-  border-radius: 4px;
-  margin-top: 5px;
-  cursor: pointer;
-  flex-grow: 1;
-  font-size: medium;
-  height: 60px; 
+  flex: 1;
+  /* Faz com que ambos os botões ocupem espaços iguais */
+  margin: 5px;
+  /* Espaço ao redor dos botões para não ficarem grudados */
+  height: auto;
+  /* Altura auto para acomodar conteúdo extra */
+  min-height: 50px;
+  /* Garante uma altura mínima para os botões */
+  min-width: 100px;
+  /* Define uma largura mínima para os botões */
+}
+
+@media (max-width: 800px) {
+  .botoes {
+    flex-direction: column;
+    /* Coloca os botões em coluna em telas pequenas */
+  }
+
+  .botoes button {
+    width: 100%;
+    /* Garante que cada botão ocupe a largura total */
+    margin: 10px 0;
+    /* Ajusta a margem para maior espaçamento vertical */
+  }
 }

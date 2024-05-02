@@ -91,3 +91,7 @@ button {
     background-image: url('/src/assets/images/placeholder-image.jpg'); /* Substitua 'placeholder-image.jpg' pelo caminho da sua imagem */
 }
 
+.Logo-img img{
+    background-image: url('/src/assets/images/placeholder-image.jpg');
+    height: 7vh;
+}

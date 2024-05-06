@@ -6,27 +6,29 @@ import './LoginPage.css';
 function LoginPage() {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [senha, setSenha] = useState(''); // Corrigindo para 'senha'
     const [error, setError] = useState('');
 
     const handleLogin = (event) => {
         event.preventDefault();
 
         const userData = {
-            email, // Email
-            password, // Senha
+            email, // Enviando 'email'
+            senha, // Enviando 'senha' em vez de 'password'
         };
 
-        axios.post('http://localhost:8080/usuario/login', userData) // Substitua pelo seu endpoint de login
+        axios.post('http://localhost:8080/login', userData) // Certifique-se de que o endpoint está correto
             .then((response) => {
-                if (response.status === 200) { // Verifica se a resposta foi bem-sucedida
-                    setError(''); // Limpa erros anteriores
-                    navigate('/home'); // Redireciona para a página "home"
+                if (response.status === 200) { // Se a resposta for bem-sucedida
+                    setError(''); // Limpa o erro anterior
+                    navigate('/home'); // Redireciona para a página home
                 }
             })
             .catch((error) => {
+                // Se a resposta for 400, limpe a senha e exiba uma mensagem de erro
                 if (error.response && error.response.status === 400) {
                     setError('Usuário ou senha incorretos.'); // Mensagem de erro para login incorreto
+                    setSenha(''); // Limpar a senha ao detectar erro
                 } else {
                     setError('Erro ao fazer login. Tente novamente mais tarde.'); // Erro geral
                 }
@@ -52,8 +54,8 @@ function LoginPage() {
                     <input
                         type="password"
                         placeholder="Senha"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
+                        value={senha} // Alterado para 'senha'
+                        onChange={(e) => setSenha(e.target.value)}
                     />
                     <div className="botoes">
                         <button type="submit">Login</button>

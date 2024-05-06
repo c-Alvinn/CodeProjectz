@@ -16,7 +16,7 @@ function AddScreen() {
     }, []);
 
     const fetchCategories = () => {
-        axios.get('http://localhost:8080/categoria')
+        axios.get('http://localhost:6419/categoria')
             .then(response => {
                 setCategories(response.data);
             })
@@ -39,7 +39,7 @@ function AddScreen() {
 
     const handleAddCategory = () => {
         if (customCategory.trim() !== '') {
-            axios.post('http://localhost:8080/categoria', { nome: customCategory })
+            axios.post('http://localhost:6419/categoria', { nome: customCategory })
                 .then(response => {
                     fetchCategories();
                     setCustomCategory(''); 
@@ -61,7 +61,7 @@ function AddScreen() {
         formData.append("markdown", markdownFile); // Adiciona o arquivo Markdown
         formData.append("categoria", finalCategory);
 
-        axios.post('http://localhost:8080/artigos', formData, {
+        axios.post('http://localhost:6419/artigos', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
             },

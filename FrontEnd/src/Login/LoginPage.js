@@ -17,7 +17,7 @@ function LoginPage() {
             senha, // Enviando 'senha' em vez de 'password'
         };
 
-        axios.post('http://localhost:8080/login', userData) // Certifique-se de que o endpoint está correto
+        axios.post('http://localhost:8080/usuario/login', userData) // Certifique-se de que o endpoint está correto
             .then((response) => {
                 if (response.status === 200) { // Se a resposta for bem-sucedida
                     setError(''); // Limpa o erro anterior

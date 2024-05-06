@@ -50,13 +50,11 @@ function SignUpPage() {
       senha: password,
     };
 
-    console.log('Dados do formulário:', userData); // Mostra todos os dados do formulário no console
-
     axios
       .post('http://localhost:8080/usuario/criar', userData)
       .then((response) => {
         console.log('Usuário cadastrado com sucesso:', response.data);
-        navigate('/login'); // Redireciona para a página de login após cadastro bem-sucedido
+        navigate('/'); // Redireciona para a página de login após cadastro bem-sucedido
       })
       .catch((error) => {
         setErrorMessage('Erro ao cadastrar usuário. Tente novamente mais tarde.'); // Define a mensagem de erro

@@ -74,7 +74,7 @@ public class UsuarioController {
         return ResponseEntity.status(HttpStatus.OK).body(usuarioRepository.save(usuarioModel));
     }
 
-    @GetMapping("/login")
+    @PostMapping("/login")
     public ResponseEntity<Usuario> login(@RequestBody UsuarioRecordDto usuarioRecordDto){
 
         var user = usuarioRepository.findByEmailAndSenha(usuarioRecordDto.email(), usuarioRecordDto.senha());

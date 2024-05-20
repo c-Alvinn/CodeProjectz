@@ -1,21 +1,30 @@
 // Sidebar.js
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import './Sidebar.css';
-import userImage from './placeholder.jpg'; // Importa a imagem do usuário
+import userImage from './placeholder.png'; 
 
 function Sidebar() {
     const [isOpen, setIsOpen] = useState(false);
     const navigate = useNavigate();
+    const location = useLocation(); 
 
     const toggleSidebar = () => {
         setIsOpen(!isOpen);
     };
 
+    // Lista de caminhos onde a Sidebar não deve aparecer
+    const hiddenPaths = ['/', '/signup'];
+    console.log(location)
+
+    // Verifica se a rota atual está na lista de rotas onde a Sidebar não deve ser exibida
+    if (hiddenPaths.includes(location.pathname)) {
+        return null; // Não renderiza a Sidebar
+    }
+
     return (
         <div className={`sidebar ${isOpen ? 'open' : ''}`}>
             <div className="user-profile">
-                {/* Imagem do usuário */}
                 <img src={userImage} alt="User" />
             </div>
             <div className="sidebar-toggle" onClick={toggleSidebar}>

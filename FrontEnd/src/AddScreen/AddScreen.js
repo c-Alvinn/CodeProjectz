@@ -5,8 +5,8 @@ import axios from 'axios';
 function AddScreen() {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
-    const [image, setImage] = useState(null);  // Armazena o arquivo da imagem
-    const [markdownFile, setMarkdownFile] = useState(null);  // Armazena o arquivo Markdown
+    const [image, setImage] = useState(null);
+    const [markdownFile, setMarkdownFile] = useState(null);
     const [category, setCategory] = useState('');
     const [customCategory, setCustomCategory] = useState('');
     const [categories, setCategories] = useState([]);
@@ -33,7 +33,7 @@ function AddScreen() {
 
     const handleMarkdownChange = (e) => {
         if (e.target.files.length > 0) {
-            setMarkdownFile(e.target.files[0]); // Pega o arquivo Markdown
+            setMarkdownFile(e.target.files[0]);
         }
     };
 
@@ -50,28 +50,51 @@ function AddScreen() {
         }
     };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const finalCategory = category === "custom" ? customCategory : category;
-
+    const uploadFile = async (file) => {
         const formData = new FormData();
-        formData.append("titulo", title);
-        formData.append("descricao", description);
-        formData.append("imagem", image); 
-        formData.append("markdown", markdownFile); // Adiciona o arquivo Markdown
-        formData.append("categoria", finalCategory);
+        formData.append("conteudo", file);
 
-        axios.post('http://localhost:6419/artigos', formData, {
+        const response = await axios.post('http://localhost:6419/conteudo', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
             },
-        })
-        .then(response => {
-            console.log("Artigo adicionado com sucesso:", response.data);
-        })
-        .catch(error => {
-            console.error("Erro ao adicionar artigo:", error);
         });
+
+        return response.data;
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        const finalCategory = category === "custom" ? customCategory : category;
+
+        let imageId = null;
+        let markdownId = null;
+
+        if (image) {
+            imageId = await uploadFile(image);
+        }
+
+        if (markdownFile) {
+            markdownId = await uploadFile(markdownFile);
+        }
+
+        const artigoData = {
+            titulo: title,
+            descricao: description,
+            categoriaID: categories.find(cat => cat.nome === finalCategory)?.id,
+            criadorID: 1, // Substitua pelo ID do criador atual
+            imagemID: imageId,
+            markdownID: markdownId,
+        };
+
+        axios.post('http://localhost:6419/artigo', artigoData)
+            .then(response => {
+                console.log("Artigo adicionado com sucesso:", response.data);
+            })
+            .catch(error => {
+                console.error("Erro ao adicionar artigo:", error);
+            });
     };
 
     return (
@@ -92,19 +115,17 @@ function AddScreen() {
                     onChange={(e) => setDescription(e.target.value)}
                 />
 
-                {/* Campo para upload de imagem com legenda */}
                 <label>Insira aqui sua imagem:</label>
                 <input
                     type="file"
-                    accept="image/*"  
+                    accept="image/*"
                     onChange={handleImageChange}
                 />
 
-                {/* Campo para upload de arquivo Markdown com legenda */}
                 <label>Insira aqui seu arquivo Markdown:</label>
                 <input
                     type="file"
-                    accept=".md"  // Apenas arquivos Markdown
+                    accept=".md"
                     onChange={handleMarkdownChange}
                 />
 

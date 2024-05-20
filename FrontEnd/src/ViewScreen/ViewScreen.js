@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import ReactMarkdown from 'react-markdown';
 import './ViewScreen.css';
 
-function ArticleScreen({ match }) { // Se estiver usando React Router, pode obter o ID via parâmetros de rota
+function ArticleScreen({ match }) {
   const [articleData, setArticleData] = useState(null);
   const [error, setError] = useState('');
 
@@ -28,16 +29,7 @@ function ArticleScreen({ match }) { // Se estiver usando React Router, pode obte
       <div className="article-container">
         <h1 className="article-title">{articleData.titulo}</h1>
         <h2 className="article-instructor">Criado por: {articleData.criador.nome}</h2>
-        <iframe
-          width="560"
-          height="315"
-          src={articleData.conteudo.url} // Certifique-se de que este campo está corretamente mapeado
-          title="Video do Artigo"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerpolicy="strict-origin-when-cross-origin"
-          allowfullscreen
-        ></iframe>
+        <ReactMarkdown>{articleData.conteudo.markdown}</ReactMarkdown> {/* Aqui o Markdown é renderizado */}
         <p className="article-content">{articleData.descricao}</p>
         <h3 className="article-category">Categoria: {articleData.categoria.nome}</h3>
         <div className="tags">
@@ -51,4 +43,3 @@ function ArticleScreen({ match }) { // Se estiver usando React Router, pode obte
 }
 
 export default ArticleScreen;
-

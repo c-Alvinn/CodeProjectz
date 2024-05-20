@@ -41,7 +41,8 @@ public class ArtigoController {
         BeanUtils.copyProperties(artigoRecordDto, artigo);
         artigo.setCategoria(categoriaRepository.findByCategoriaID(artigoRecordDto.categoriaID()));
         artigo.setCriador(usuarioRepository.findByUserID(artigoRecordDto.criadorID()));
-        artigo.setConteudo(conteudoRepository.findByConteudoID(artigoRecordDto.conteudoID()));
+        artigo.setImagem(conteudoRepository.findById(artigoRecordDto.getImagemID()).orElse(null));
+        artigo.setMarkdown(conteudoRepository.findById(artigoRecordDto.getMarkdownID()).orElse(null));
         return ResponseEntity.status(HttpStatus.CREATED).body(artigoRepository.save(artigo));
     }
 

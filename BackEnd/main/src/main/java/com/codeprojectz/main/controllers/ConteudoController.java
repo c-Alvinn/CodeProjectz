@@ -25,7 +25,9 @@ public class ConteudoController {
     @PostMapping
     public ResponseEntity<?> uploadFile(@RequestParam("conteudo") MultipartFile file) throws IOException {
         String uploadFile = conteudoService.uploadFile(file);
-
+        
+        // Supondo que o ConteudoService esteja retornando o ID do conteúdo criado
+        Integer conteudoId = conteudoService.getLastSavedContentId();
         return ResponseEntity.status(HttpStatus.OK).body(uploadFile);
     }
 

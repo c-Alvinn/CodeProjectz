@@ -42,7 +42,7 @@ function AddScreen() {
             axios.post('http://localhost:6419/categoria', { nome: customCategory })
                 .then(response => {
                     fetchCategories();
-                    setCustomCategory(''); 
+                    setCustomCategory('');
                 })
                 .catch(error => {
                     console.error('Erro ao adicionar categoria:', error);
@@ -79,10 +79,12 @@ function AddScreen() {
             markdownId = await uploadFile(markdownFile);
         }
 
+        const selectedCategory = categories.find(cat => cat.nome === finalCategory);
+
         const artigoData = {
             titulo: title,
             descricao: description,
-            categoriaID: categories.find(cat => cat.nome === finalCategory)?.id,
+            categoriaID: selectedCategory ? selectedCategory.id : null,
             criadorID: 1, // Substitua pelo ID do criador atual
         };
 

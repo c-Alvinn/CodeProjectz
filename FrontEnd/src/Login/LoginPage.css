@@ -19,7 +19,7 @@ html {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   background-color: #31363F;
   width: 70vw;
-  height: 60vh;
+  height: 70vh; /* Aumentando a altura para acomodar mensagens de erro */
   margin: auto;
 }
 
@@ -34,7 +34,6 @@ html {
   background-image: url('/src/assets/images/placeholder-image.jpg');
   background-size: cover;
   background-position: center;
-
 }
 
 .right-section {
@@ -45,7 +44,6 @@ html {
   justify-content: center;
   margin: 10px;
   overflow: hidden;
-
 }
 
 .login-title {
@@ -67,63 +65,52 @@ html {
 
 .login-form button {
   width: 100%;
-  /* Faz com que cada botão preencha o espaço total da div pai */
   padding: 10px;
   margin: 5px 0;
-  /* Garante que haja um pequeno espaço vertical entre os botões */
   border: none;
   border-radius: 4px;
   background-color: #76ABAE;
   color: black;
   cursor: pointer;
   font-size: 0.7em;
-  /* Torna o tamanho da fonte um pouco menor */
   text-align: center;
-  /* Garante que o texto esteja centralizado */
   white-space: normal;
-  /* Permite que o texto quebre em mais de uma linha se necessário */
   overflow: visible;
-  /* Esconde qualquer texto que exceda o botão */
-
 }
 
 .login-form button:hover {
   background-color: #70A0A0;
-  /* Efeito de hover para os botões */
 }
 
 .botoes {
   display: flex;
   justify-content: space-between;
-  /* Espaça igualmente os botões */
   align-items: center;
   width: 100%;
-  /* Faz com que a div botoes ocupe a largura total da div pai */
 }
 
 .botoes button {
   flex: 1;
-  /* Faz com que ambos os botões ocupem espaços iguais */
   margin: 5px;
-  /* Espaço ao redor dos botões para não ficarem grudados */
   height: auto;
-  /* Altura auto para acomodar conteúdo extra */
   min-height: 50px;
-  /* Garante uma altura mínima para os botões */
   min-width: 100px;
-  /* Define uma largura mínima para os botões */
+}
+
+.error-message {
+  color: #ff4d4d; /* Cor vermelha para a mensagem de erro */
+  font-size: 0.9em;
+  text-align: center;
+  margin-top: 10px; /* Espaço acima da mensagem de erro */
 }
 
 @media (max-width: 800px) {
   .botoes {
     flex-direction: column;
-    /* Coloca os botões em coluna em telas pequenas */
   }
 
   .botoes button {
     width: 100%;
-    /* Garante que cada botão ocupe a largura total */
     margin: 10px 0;
-    /* Ajusta a margem para maior espaçamento vertical */
   }
 }

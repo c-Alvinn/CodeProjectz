@@ -10,7 +10,7 @@ function SignUpPage() {
   const [dataNascimento, setDataNascimento] = useState('');
   const [password, setPassword] = useState('');
   const [passwordRepeat, setPasswordRepeat] = useState('');
-  const [errorMessage, setErrorMessage] = useState(''); // Estado para mensagens de erro
+  const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
 
   const clearFields = () => {
@@ -26,23 +26,23 @@ function SignUpPage() {
   const validateFields = () => {
     if (!nome || !sobrenome || !email || !dataNascimento || !password || !passwordRepeat) {
       setErrorMessage('Todos os campos são obrigatórios.');
-      clearFields(); // Limpa os campos ao ocorrer erro
+      clearFields();
       return false;
     }
 
     if (!validateEmailDomain(email)) {
       setErrorMessage('O e-mail deve ser do domínio @estudante.iftm.edu.br ou @iftm.edu.br.');
-      clearFields(); // Limpa os campos ao ocorrer erro
+      clearFields();
       return false;
     }
 
     if (password !== passwordRepeat) {
       setErrorMessage('As senhas não coincidem.');
-      clearFields(); // Limpa os campos ao ocorrer erro
+      clearFields();
       return false;
     }
 
-    setErrorMessage(''); // Limpa a mensagem de erro se a validação passar
+    setErrorMessage('');
     return true;
   };
 
@@ -50,7 +50,7 @@ function SignUpPage() {
     event.preventDefault();
 
     if (!validateFields()) {
-      return; // Se a validação falhar, não continue
+      return;
     }
 
     const userData = {
@@ -68,8 +68,8 @@ function SignUpPage() {
         navigate('/'); // Redireciona para a página de login após cadastro bem-sucedido
       })
       .catch((error) => {
-        setErrorMessage('Erro ao cadastrar usuário. Tente novamente mais tarde.'); // Define a mensagem de erro
-        clearFields(); // Limpa os campos ao ocorrer erro
+        setErrorMessage('Erro ao cadastrar usuário. Tente novamente mais tarde.');
+        clearFields();
       });
   };
 
@@ -100,7 +100,7 @@ function SignUpPage() {
           <input
             type="email"
             placeholder="E-mail"
-            value={email} // Adicionado o valor do e-mail
+            value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
           <input
@@ -117,6 +117,7 @@ function SignUpPage() {
           />
           <div className="botoes">
             <button type="submit">Cadastrar</button>
+            <button type="button" onClick={() => navigate('/')}>Voltar</button> {/* Botão Voltar */}
           </div>
           {errorMessage && <p className="error-message">{errorMessage}</p>} {/* Exibe mensagem de erro se houver */}
         </form>

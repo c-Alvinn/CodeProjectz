@@ -84,8 +84,6 @@ function AddScreen() {
             descricao: description,
             categoriaID: categories.find(cat => cat.nome === finalCategory)?.id,
             criadorID: 1, // Substitua pelo ID do criador atual
-            imagemID: imageId,
-            markdownID: markdownId,
         };
 
         axios.post('http://localhost:6419/artigo', artigoData)

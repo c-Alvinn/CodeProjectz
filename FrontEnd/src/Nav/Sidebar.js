@@ -31,8 +31,7 @@ function Sidebar() {
                 <div className="icon"></div>
             </div>
             <nav className='botoes-menu'>
-                <button type='button' onClick={() => { toggleSidebar(); navigate('/home'); }}>Cursos</button>
-                <button type='button' onClick={() => { toggleSidebar(); navigate('/home'); }}>Projetos</button>
+                <button type='button' onClick={() => { toggleSidebar(); navigate('/home'); }}>Artigos</button>
                 <button type='button' onClick={() => { toggleSidebar(); navigate('/home'); }}>Perfil</button>
                 <button type='button' onClick={() => { toggleSidebar(); navigate('/add'); }}>Adicionar</button>
                 <button type='button' onClick={() => { toggleSidebar(); navigate('/'); }}>Sair</button>

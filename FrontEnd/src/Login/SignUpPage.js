@@ -18,9 +18,20 @@ function SignUpPage() {
     setPasswordRepeat('');
   };
 
+  const validateEmailDomain = (email) => {
+    const allowedDomains = ['@estudante.iftm.edu.br', '@iftm.edu.br'];
+    return allowedDomains.some(domain => email.endsWith(domain));
+  };
+
   const validateFields = () => {
     if (!nome || !sobrenome || !email || !dataNascimento || !password || !passwordRepeat) {
       setErrorMessage('Todos os campos são obrigatórios.');
+      clearFields(); // Limpa os campos ao ocorrer erro
+      return false;
+    }
+
+    if (!validateEmailDomain(email)) {
+      setErrorMessage('O e-mail deve ser do domínio @estudante.iftm.edu.br ou @iftm.edu.br.');
       clearFields(); // Limpa os campos ao ocorrer erro
       return false;
     }
@@ -89,6 +100,7 @@ function SignUpPage() {
           <input
             type="email"
             placeholder="E-mail"
+            value={email} // Adicionado o valor do e-mail
             onChange={(e) => setEmail(e.target.value)}
           />
           <input

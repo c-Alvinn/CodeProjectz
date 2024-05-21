@@ -11,7 +11,7 @@ function HomePage() {
     }, []);
 
     const fetchArtigos = () => {
-        axios.get('http://localhost:6419/artigo/listAll')
+        axios.get('http://localhost:6419/artigo')
             .then(response => {
                 if (response.status === 200) {
                     setArtigos(response.data);

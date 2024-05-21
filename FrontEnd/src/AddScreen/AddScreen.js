@@ -79,12 +79,20 @@ function AddScreen() {
             markdownId = await uploadFile(markdownFile);
         }
 
-        const selectedCategory = categories.find(cat => cat.nome === finalCategory);
+        // Busca o ID da categoria correta
+        const selectedCategory = category === "custom" 
+            ? categories.find(cat => cat.nome === customCategory)?.id 
+            : categories.find(cat => cat.id === parseInt(category))?.id;
+
+        if (!selectedCategory) {
+            console.error("Categoria inválida");
+            return;
+        }
 
         const artigoData = {
             titulo: title,
             descricao: description,
-            categoriaID: selectedCategory ? selectedCategory.id : null,
+            categoriaID: selectedCategory,
             criadorID: 1, // Substitua pelo ID do criador atual
         };
 
@@ -135,7 +143,7 @@ function AddScreen() {
                 >
                     <option value="">Selecione a Categoria</option>
                     {categories.map(cat => (
-                        <option key={cat.id} value={cat.nome}>{cat.nome}</option>
+                        <option key={cat.id} value={cat.id}>{cat.nome}</option>
                     ))}
                     <option value="custom">Outra (especifique)</option>
                 </select>

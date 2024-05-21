@@ -10,7 +10,6 @@ public record ArtigoRecordDto(
         @NotNull Date dataPostagem,
         @NotBlank String descricao,
         @NotNull int categoriaID,
-        @NotNull int criadorID,
-        @NotNull int conteudoID
+        @NotNull int criadorID
 ) {
 }

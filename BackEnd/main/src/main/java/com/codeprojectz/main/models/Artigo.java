@@ -29,6 +29,9 @@ public class Artigo extends RepresentationModel<Artigo> implements Serializable 
     @JoinColumn(name = "usuarioID")
     private Usuario criador;
     @OneToOne
+    @JoinColumn(name = "imagemID")
+    private Conteudo imagem;
+    @OneToOne
     @JoinColumn(name = "conteudoID")
     private Conteudo conteudo;
 

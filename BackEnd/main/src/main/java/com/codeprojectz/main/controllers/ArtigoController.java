@@ -41,7 +41,11 @@ public class ArtigoController {
         BeanUtils.copyProperties(artigoRecordDto, artigo);
         artigo.setCategoria(categoriaRepository.findByCategoriaID(artigoRecordDto.categoriaID()));
         artigo.setCriador(usuarioRepository.findByUserID(artigoRecordDto.criadorID()));
-        artigo.setConteudo(conteudoRepository.findByConteudoID(artigoRecordDto.conteudoID()));
+
+        List<Integer> ids = conteudoRepository.findLastTwoIds();
+        artigo.setImagem(conteudoRepository.findByConteudoID(ids.getLast()));
+        artigo.setConteudo(conteudoRepository.findByConteudoID(ids.getFirst()));
+        
         return ResponseEntity.status(HttpStatus.CREATED).body(artigoRepository.save(artigo));
     }
 

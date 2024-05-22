@@ -1,5 +1,6 @@
 package com.codeprojectz.main.controllers;
 
+import com.codeprojectz.main.models.Conteudo;
 import com.codeprojectz.main.repositories.ConteudoRepository;
 import com.codeprojectz.main.services.ConteudoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,21 @@ public class ConteudoController {
         String uploadFile = conteudoService.uploadFile(file);
 
         return ResponseEntity.status(HttpStatus.OK).body(uploadFile);
+    }
+
+    @GetMapping("/id/{id}")
+    public ResponseEntity<?> getFileById(@PathVariable(value="id") Integer id){
+        Conteudo conteudo = conteudoRepository.findByConteudoID(id);
+
+        if(conteudo == null){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
+
+        conteudo.setConteudo(conteudoService.downloadFileById(id));
+
+        MediaType mediaType = MediaTypeFactory.getMediaType(conteudo.getNomeArquivo()).orElse(MediaType.APPLICATION_OCTET_STREAM);
+
+        return ResponseEntity.status(HttpStatus.OK).contentType(mediaType).body(conteudo.getConteudo());
     }
 
     @GetMapping("/{filename}")

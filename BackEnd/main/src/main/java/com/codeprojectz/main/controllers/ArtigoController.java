@@ -73,7 +73,7 @@ public class ArtigoController {
         return ResponseEntity.status(HttpStatus.OK).body(artigo);
     }
 
-    @GetMapping("/id/{categoriaID}")
+    @GetMapping("/categoria/{categoriaID}")
     public ResponseEntity<List<Artigo>> findByCategoria(@PathVariable(value = "categoriaID") int categoriaID){
         List<Artigo> lista = artigoRepository.findByCategoriaCategoriaID(categoriaID);
         if (lista.isEmpty()) {

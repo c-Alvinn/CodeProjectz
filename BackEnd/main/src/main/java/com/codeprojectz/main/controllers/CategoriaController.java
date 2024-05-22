@@ -49,6 +49,15 @@ public class CategoriaController {
         return ResponseEntity.status(HttpStatus.OK).body(categoria);
     }
 
+    @GetMapping("/id/{id}")
+    public ResponseEntity<Categoria> findByNome(@PathVariable(value = "id") Integer id){
+        Categoria categoria = categoriaRepository.findByCategoriaID(id);
+        if (categoria == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(categoria);
+    }
+
     @DeleteMapping("/{nome}")
     public ResponseEntity<Categoria> deleteCategoria(@PathVariable(value = "nome") String nome){
         var categoria = categoriaRepository.findByNome(nome);

@@ -37,4 +37,10 @@ public class ConteudoService {
         return fileInbytes;
     }
 
+    public byte[] downloadFileById(int id){
+        Optional<Conteudo> fileFromDb = conteudoRepository.findById(id);
+        byte[] fileInbytes = FileUtils.decompressFile(fileFromDb.get().getConteudo());
+        return fileInbytes;
+    }
+
 }

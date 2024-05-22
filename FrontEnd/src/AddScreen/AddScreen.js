@@ -10,6 +10,7 @@ function AddScreen() {
     const [category, setCategory] = useState('');
     const [customCategory, setCustomCategory] = useState('');
     const [categories, setCategories] = useState([]);
+    const [selectedCategoryId, setSelectedCategoryId] = useState(null);
 
     useEffect(() => {
         fetchCategories();
@@ -43,6 +44,7 @@ function AddScreen() {
                 .then(response => {
                     fetchCategories();
                     setCustomCategory('');
+                    setSelectedCategoryId(response.data.id); // Armazena o ID da nova categoria
                 })
                 .catch(error => {
                     console.error('Erro ao adicionar categoria:', error);
@@ -66,8 +68,6 @@ function AddScreen() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const finalCategory = category === "custom" ? customCategory : category;
-
         let imageId = null;
         let markdownId = null;
 
@@ -79,22 +79,28 @@ function AddScreen() {
             markdownId = await uploadFile(markdownFile);
         }
 
-        // Busca o ID da categoria correta
-        const selectedCategory = category === "custom" 
-            ? categories.find(cat => cat.nome === customCategory)?.id 
-            : categories.find(cat => cat.id === parseInt(category))?.id;
+        const finalCategory = category === "custom" ? customCategory : category;
+        
+        if (category !== "custom") {
+            const selectedCategory = categories.find(cat => cat.nome === category);
+            setSelectedCategoryId(selectedCategory ? selectedCategory.id : null);
+        }
 
-        if (!selectedCategory) {
-            console.error("Categoria inválida");
+        console.log("Selected Category ID:", selectedCategoryId);
+
+        if (!selectedCategoryId) {
+            console.error("Categoria não encontrada");
             return;
         }
 
         const artigoData = {
             titulo: title,
             descricao: description,
-            categoriaID: selectedCategory,
+            categoriaID: selectedCategoryId,
             criadorID: 1, // Substitua pelo ID do criador atual
         };
+
+        console.log("Artigo Data:", artigoData);
 
         axios.post('http://localhost:6419/artigo', artigoData)
             .then(response => {
@@ -139,11 +145,19 @@ function AddScreen() {
 
                 <select
                     value={category}
-                    onChange={(e) => setCategory(e.target.value)}
+                    onChange={(e) => {
+                        setCategory(e.target.value);
+                        if (e.target.value !== "custom") {
+                            const selectedCategory = categories.find(cat => cat.nome === e.target.value);
+                            setSelectedCategoryId(selectedCategory ? selectedCategory.id : null);
+                        } else {
+                            setSelectedCategoryId(null); // Para nova categoria customizada
+                        }
+                    }}
                 >
                     <option value="">Selecione a Categoria</option>
                     {categories.map(cat => (
-                        <option key={cat.id} value={cat.id}>{cat.nome}</option>
+                        <option key={cat.id} value={cat.nome}>{cat.nome}</option>
                     ))}
                     <option value="custom">Outra (especifique)</option>
                 </select>

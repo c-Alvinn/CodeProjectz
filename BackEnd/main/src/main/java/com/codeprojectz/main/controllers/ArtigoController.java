@@ -9,6 +9,7 @@ import com.codeprojectz.main.repositories.UsuarioRepository;
 
 import jakarta.validation.Valid;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.BeanUtils;
@@ -39,7 +40,9 @@ public class ArtigoController {
     public ResponseEntity<Artigo> addArtigo(@RequestBody @Valid ArtigoRecordDto artigoRecordDto) {
         var artigo = new Artigo();
         BeanUtils.copyProperties(artigoRecordDto, artigo);
-        artigo.setCategoria(categoriaRepository.findByCategoriaID(artigoRecordDto.categoriaID()));
+
+        artigo.setDataPostagem(new Date());
+        artigo.setCategoria(categoriaRepository.findByNome(artigoRecordDto.categoriaNome()));
         artigo.setCriador(usuarioRepository.findByUserID(artigoRecordDto.criadorID()));
 
         List<Integer> ids = conteudoRepository.findLastTwoIds();
@@ -58,6 +61,16 @@ public class ArtigoController {
         }
 
         return ResponseEntity.status(HttpStatus.OK).body(lista);
+    }
+
+    @GetMapping("/id/{artigoID}")
+    public ResponseEntity<Artigo> getArtigoById(@PathVariable(value = "artigoID") int artigoID){
+        Artigo artigo = artigoRepository.findById(artigoID);
+
+        if(artigo == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(artigo);
     }
 
     @GetMapping("/id/{categoriaID}")

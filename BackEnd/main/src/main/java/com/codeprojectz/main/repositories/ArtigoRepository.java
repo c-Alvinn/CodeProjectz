@@ -11,4 +11,5 @@ import org.springframework.stereotype.Repository;
 public interface ArtigoRepository extends JpaRepository<Artigo, Integer> {
     List<Artigo> findByCategoriaCategoriaID(Integer categoriaID);
     List<Artigo> findByCategoriaNomeLike(String nome);
+    Artigo findById(int artigoID);
 }

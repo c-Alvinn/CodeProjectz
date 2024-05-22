@@ -10,7 +10,6 @@ function AddScreen() {
     const [category, setCategory] = useState('');
     const [customCategory, setCustomCategory] = useState('');
     const [categories, setCategories] = useState([]);
-    const [selectedCategoryId, setSelectedCategoryId] = useState(null);
 
     useEffect(() => {
         fetchCategories();
@@ -43,8 +42,7 @@ function AddScreen() {
             axios.post('http://localhost:6419/categoria', { nome: customCategory })
                 .then(response => {
                     fetchCategories();
-                    setCustomCategory('');
-                    setSelectedCategoryId(response.data.id); // Armazena o ID da nova categoria
+                    setCustomCategory(''); 
                 })
                 .catch(error => {
                     console.error('Erro ao adicionar categoria:', error);
@@ -68,6 +66,8 @@ function AddScreen() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        const finalCategory = category === "custom" ? customCategory : category;
+
         let imageId = null;
         let markdownId = null;
 
@@ -79,28 +79,12 @@ function AddScreen() {
             markdownId = await uploadFile(markdownFile);
         }
 
-        const finalCategory = category === "custom" ? customCategory : category;
-        
-        if (category !== "custom") {
-            const selectedCategory = categories.find(cat => cat.nome === category);
-            setSelectedCategoryId(selectedCategory ? selectedCategory.id : null);
-        }
-
-        console.log("Selected Category ID:", selectedCategoryId);
-
-        if (!selectedCategoryId) {
-            console.error("Categoria não encontrada");
-            return;
-        }
-
         const artigoData = {
             titulo: title,
             descricao: description,
-            categoriaID: selectedCategoryId,
+            categoriaID: categories.find(cat => cat.nome === finalCategory)?.id,
             criadorID: 1, // Substitua pelo ID do criador atual
         };
-
-        console.log("Artigo Data:", artigoData);
 
         axios.post('http://localhost:6419/artigo', artigoData)
             .then(response => {
@@ -145,15 +129,7 @@ function AddScreen() {
 
                 <select
                     value={category}
-                    onChange={(e) => {
-                        setCategory(e.target.value);
-                        if (e.target.value !== "custom") {
-                            const selectedCategory = categories.find(cat => cat.nome === e.target.value);
-                            setSelectedCategoryId(selectedCategory ? selectedCategory.id : null);
-                        } else {
-                            setSelectedCategoryId(null); // Para nova categoria customizada
-                        }
-                    }}
+                    onChange={(e) => setCategory(e.target.value)}
                 >
                     <option value="">Selecione a Categoria</option>
                     {categories.map(cat => (

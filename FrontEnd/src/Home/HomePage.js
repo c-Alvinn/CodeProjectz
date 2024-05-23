@@ -10,16 +10,36 @@ function HomePage() {
         fetchArtigos();
     }, []);
 
-    const fetchArtigos = () => {
-        axios.get('http://localhost:6419/artigo')
-            .then(response => {
-                if (response.status === 200) {
-                    setArtigos(response.data);
-                }
-            })
-            .catch(error => {
-                console.error('Erro ao buscar artigos:', error);
-            });
+    const fetchArtigos = async () => {
+        try {
+            const response = await axios.get('http://localhost:6419/artigo');
+            if (response.status === 200) {
+                const artigosComImagens = await Promise.all(response.data.map(async (artigo) => {
+                    return await fetchArtigoCompleto(artigo);
+                }));
+                setArtigos(artigosComImagens);
+            }
+        } catch (error) {
+            console.error('Erro ao buscar artigos:', error);
+        }
+    };
+
+    const fetchArtigoCompleto = async (artigo) => {
+        try {
+            // Assume que o ID da imagem está armazenado no campo imagemID do artigo
+            const resImagem = await axios.get(`http://localhost:6419/conteudo/id/${artigo.imagemID}`, { responseType: 'blob' });
+            const urlImagem = URL.createObjectURL(resImagem.data);
+            return {
+                ...artigo,
+                imagemURL: urlImagem
+            };
+        } catch (error) {
+            console.error('Erro ao buscar imagem do artigo:', error);
+            return {
+                ...artigo,
+                imagemURL: '' // Ou algum placeholder padrão
+            };
+        }
     };
 
     return (
@@ -32,7 +52,7 @@ function HomePage() {
                             title={artigo.titulo} 
                             description={artigo.descricao} 
                             category={artigo.categoria.nome} 
-                            image={artigo.conteudo.url} 
+                            image={artigo.imagemURL} 
                             link={`/View/${artigo.artigoID}`}
                         />
                     </a>

@@ -1,10 +1,6 @@
 package com.codeprojectz.main.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Table;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.hateoas.RepresentationModel;
 
@@ -28,5 +24,6 @@ public class Usuario extends RepresentationModel<Usuario> implements Serializabl
     private Date dataNascimento;
     private String email;
     private String senha;
-    private boolean isLogged;
+    @Column(name = "is_logged")
+    private Boolean isLogged;
 }

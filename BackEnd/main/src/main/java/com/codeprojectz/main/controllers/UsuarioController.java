@@ -40,6 +40,16 @@ public class UsuarioController {
         return ResponseEntity.status(HttpStatus.OK).body(usuarioO.get());
     }
 
+    @GetMapping("perfil/{id}")
+    public ResponseEntity<Object> exibirPerfil(@PathVariable(value = "id") Integer id){
+        Optional<Usuario> usuarioO = Optional.ofNullable(usuarioRepository.findUserProfile(id));
+        if(usuarioO.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuarios no found.");
+        }
+        usuarioO.get().add(linkTo(methodOn(UsuarioController.class).getAllUsuarios()).withRel("Usuarios List"));
+        return ResponseEntity.status(HttpStatus.OK).body(usuarioO.get());
+    }
+
     @GetMapping("/listar")
     public ResponseEntity<List<Usuario>> getAllUsuarios(){
         List<Usuario> usuariosList = usuarioRepository.findAll();

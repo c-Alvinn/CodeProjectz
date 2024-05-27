@@ -42,11 +42,14 @@ public class UsuarioController {
 
     @GetMapping("perfil/{id}")
     public ResponseEntity<Object> exibirPerfil(@PathVariable(value = "id") Integer id){
-        Optional<Usuario> usuarioO = Optional.ofNullable(usuarioRepository.findUserProfile(id));
+        Optional<Usuario> usuarioO = usuarioRepository.findById(id);
         if(usuarioO.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuarios no found.");
         }
-        usuarioO.get().add(linkTo(methodOn(UsuarioController.class).getAllUsuarios()).withRel("Usuarios List"));
+
+        usuarioO.get().setUserID(-1);
+        usuarioO.get().setSenha("");
+
         return ResponseEntity.status(HttpStatus.OK).body(usuarioO.get());
     }
 

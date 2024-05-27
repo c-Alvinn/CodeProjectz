@@ -24,6 +24,6 @@ public class Usuario extends RepresentationModel<Usuario> implements Serializabl
     private Date dataNascimento;
     private String email;
     private String senha;
-    @Column(name = "is_logged")
-    private Boolean isLogged;
+    //@Column(name = "is_logged")
+    private boolean isLogged;
 }

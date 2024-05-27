@@ -13,7 +13,7 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
     Usuario findByEmailAndSenha(String email, String senha);
     Usuario findByUserID(Integer userID);
 
-    @Query(value = "SELECT userid, data_nascimento, email, nome, sobrenome FROM usuario WHERE userid = :userID", nativeQuery = true)
-    Usuario findUserProfile(@Param("userID") Integer userID);
+    //@Query(value = "SELECT userid, data_nascimento, email, nome, sobrenome FROM usuario WHERE userid = :userID", nativeQuery = true)
+    //Usuario findUserProfile(@Param("userID") Integer userID);
 
 }

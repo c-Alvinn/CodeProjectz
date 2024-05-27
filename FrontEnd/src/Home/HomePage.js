@@ -27,7 +27,7 @@ function HomePage() {
     const fetchArtigoCompleto = async (artigo) => {
         try {
             // Assume que o ID da imagem está armazenado no campo imagemID do artigo
-            const resImagem = await axios.get(`http://localhost:6419/conteudo/id/${artigo.imagemID}`, { responseType: 'blob' });
+            const resImagem = await axios.get(`http://localhost:6419/conteudo/id/${artigo.imagem.conteudoID}`, { responseType: 'blob' });
             const urlImagem = URL.createObjectURL(resImagem.data);
             return {
                 ...artigo,
@@ -47,7 +47,7 @@ function HomePage() {
             <h2>Últimos Artigos</h2>
             <div className="scroll-container">
                 {artigos.map((artigo, index) => (
-                    <a key={index} href={`/View/${artigo.artigoID}`}>
+                    <a key={index} href={`/view/${artigo.artigoID}`}>
                         <Card 
                             title={artigo.titulo} 
                             description={artigo.descricao} 

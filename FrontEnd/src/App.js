@@ -21,7 +21,7 @@ function App() {
           <Route path="/signup" element={<SignUpPage />} /> {/* Rota para a página de cadastro */}
           <Route path="/home" element={<HomePage />} /> {/* Rota para a página de login */}
           <Route path="/add" element={<AddScreen />} /> {/* Rota para a página de novo curso/projeto */}
-          <Route path="/view" element={<ViewScreen />} /> {/* Rota para a página de novo curso/projeto */}
+          <Route path="/view/:artigoID" element={<ViewScreen />} /> {/* Rota para a página de novo curso/projeto */}
         </Routes>
       </div>
     </Router>

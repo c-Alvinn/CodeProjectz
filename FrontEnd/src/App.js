@@ -7,7 +7,8 @@ import LoginPage from './Login/LoginPage';
 import SignUpPage from './Login/SignUpPage';
 import HomePage from './Home/HomePage'; // Importa a página inicial
 import AddScreen from './AddScreen/AddScreen';
-import ViewScreen from './ViewScreen/ViewScreen'
+import ViewScreen from './ViewScreen/ViewScreen';
+import ProfileScreen from './ProfileScreen/ProfileScreen';
 
 
 function App() {

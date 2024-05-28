@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import './ProfileScreen.css'
 import axios from 'axios';
 
 const ProfileScreen = () => {

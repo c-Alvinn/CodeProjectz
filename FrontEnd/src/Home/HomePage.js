@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './HomePage.css';
 import Card from '../Card/Card';
+import { Link } from 'react-router-dom';
 
 function HomePage() {
     const [artigos, setArtigos] = useState([]);
@@ -47,15 +48,16 @@ function HomePage() {
             <h2>Últimos Artigos</h2>
             <div className="scroll-container">
                 {artigos.map((artigo, index) => (
-                    <a key={index} href={`/view/${artigo.artigoID}`}>
+                    <Link key={index} to={`/view/${artigo.artigoID}`}>
                         <Card 
                             title={artigo.titulo} 
                             description={artigo.descricao} 
                             category={artigo.categoria.nome} 
                             image={artigo.imagemURL} 
-                            link={`/View/${artigo.artigoID}`}
+                            link={`/view/${artigo.artigoID}`}
                         />
-                    </a>
+                    </Link>
+                    
                 ))}
             </div>
         </div>

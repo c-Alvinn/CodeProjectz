@@ -1,0 +1,25 @@
+.ProfileScreen-container {
+    display: flex;
+    flex-direction: column; /* Alterando a direção do flex para coluna */
+    align-items: center; /* Centralizando os itens na vertical */
+    margin-top: 20px;
+    padding: 20px;
+    text-align: center;
+}
+
+.ProfileScreen-container h1 {
+    color: #fff;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.user-profile {
+    margin-top: 20px;
+}
+
+.user-profile img {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    object-fit: cover;
+}

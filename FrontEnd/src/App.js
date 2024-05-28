@@ -22,6 +22,7 @@ function App() {
           <Route path="/home" element={<HomePage />} /> {/* Rota para a página de login */}
           <Route path="/add" element={<AddScreen />} /> {/* Rota para a página de novo curso/projeto */}
           <Route path="/view/:artigoID" element={<ViewScreen />} /> {/* Rota para a página de novo curso/projeto */}
+          <Route path="/profile" element={<ProfileScreen />} /> {/* Rota para a página de novo curso/projeto */}
         </Routes>
       </div>
     </Router>

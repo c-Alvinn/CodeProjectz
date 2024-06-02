@@ -14,6 +14,7 @@ import java.util.List;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -90,6 +91,24 @@ public class ArtigoController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }
 
+        return ResponseEntity.status(HttpStatus.OK).body(lista);
+    }
+
+    @GetMapping("/lastFive")
+    public ResponseEntity<List<Artigo>> findLastFive(){
+        List<Artigo> lista = artigoRepository.findTop5ByOrderByDataPostagemDesc(PageRequest.of(0, 5));
+        if (lista.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(lista);
+    }
+
+    @GetMapping("/lastFive/{nome}")
+    public ResponseEntity<List<Artigo>> findLastFiveByCategoria(@PathVariable(value = "nome") String nome){
+        List<Artigo> lista = artigoRepository.findTop5ByCategoriaNomeOrderByDataPostagemDesc(nome, PageRequest.of(0, 5));
+        if (lista.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
         return ResponseEntity.status(HttpStatus.OK).body(lista);
     }
 }

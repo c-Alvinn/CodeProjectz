@@ -121,6 +121,8 @@ function AddScreen() {
                 />
 
                 <label>Insira aqui seu arquivo Markdown:</label>
+                <label>Ainda não tem seu arquivo Markdown?</label>
+                <a src="https://pandao.github.io/editor.md/en.html">clique aqui</a>
                 <input
                     type="file"
                     accept=".md"

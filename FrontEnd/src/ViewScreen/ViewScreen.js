@@ -6,7 +6,6 @@ import { useParams } from 'react-router-dom';
 
 function ViewScreen({  }) { // Utilizando match para capturar o parâmetro da rota
   const { artigoID } = useParams();
-  console.log(artigoID);
   const [articleData, setArticleData] = useState(null);
   const [imageData, setImageData] = useState(null);
   const [markdownString, setMarkdownString] = useState(null);

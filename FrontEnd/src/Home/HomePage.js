@@ -5,41 +5,45 @@ import Card from '../Card/Card';
 import { Link } from 'react-router-dom';
 
 function HomePage() {
-    const [artigos, setArtigos] = useState([]);
+    const [categorias, setCategorias] = useState([]);
+    const [artigosPorCategoria, setArtigosPorCategoria] = useState({});
+    const [ultimosArtigos, setUltimosArtigos] = useState([]);
+
 
     useEffect(() => {
-        fetchArtigos();
+        fetchCategoriasEArtigos();
     }, []);
 
-    const fetchArtigos = async () => {
+    const fetchCategoriasEArtigos = async () => {
         try {
-            const response = await axios.get('http://localhost:6419/artigo');
-            if (response.status === 200) {
-                const artigosComImagens = await Promise.all(response.data.map(async (artigo) => {
-                    return await fetchArtigoCompleto(artigo);
-                }));
-                setArtigos(artigosComImagens);
+            const resCategorias = await axios.get('http://localhost:6419/categoria');
+            const resUltimosArtigos = await axios.get('http://localhost:6419/artigo/lastFive');
+            if (resCategorias.status === 200) {
+                setCategorias(resCategorias.data);
+                resCategorias.data.forEach(categoria => {
+                    fetchArtigosPorCategoria(categoria.categoriaID);
+                });
+            }
+            if (resUltimosArtigos.status === 200) {
+                setUltimosArtigos(resUltimosArtigos.data);
             }
         } catch (error) {
-            console.error('Erro ao buscar artigos:', error);
+            console.error('Erro ao buscar categorias ou últimos artigos:', error);
         }
     };
 
-    const fetchArtigoCompleto = async (artigo) => {
+
+    const fetchArtigosPorCategoria = async (categoriaId) => {
         try {
-            // Assume que o ID da imagem está armazenado no campo imagemID do artigo
-            const resImagem = await axios.get(`http://localhost:6419/conteudo/id/${artigo.imagem.conteudoID}`, { responseType: 'blob' });
-            const urlImagem = URL.createObjectURL(resImagem.data);
-            return {
-                ...artigo,
-                imagemURL: urlImagem
-            };
+            const resArtigos = await axios.get(`http://localhost:6419/artigo/categoria/${categoriaId}`);
+            if (resArtigos.status === 200) {
+                setArtigosPorCategoria(prevState => ({
+                    ...prevState,
+                    [categoriaId]: resArtigos.data
+                }));
+            }
         } catch (error) {
-            console.error('Erro ao buscar imagem do artigo:', error);
-            return {
-                ...artigo,
-                imagemURL: '' // Ou algum placeholder padrão
-            };
+            console.error(`Erro ao buscar artigos para a categoria ${categoriaId}:`, error);
         }
     };
 
@@ -47,19 +51,35 @@ function HomePage() {
         <div className="home-page">
             <h2>Últimos Artigos</h2>
             <div className="scroll-container">
-                {artigos.map((artigo, index) => (
+                {ultimosArtigos.map((artigo, index) => (
                     <Link key={index} to={`/view/${artigo.artigoID}`}>
-                        <Card 
-                            title={artigo.titulo} 
-                            description={artigo.descricao} 
-                            category={artigo.categoria.nome} 
-                            image={artigo.imagemURL} 
-                            link={`/view/${artigo.artigoID}`}
+                        <Card
+                            title={artigo.titulo}
+                            description={artigo.descricao}
+                            category={artigo.categoria.nome}
+                            image={artigo.imagemURL}
                         />
                     </Link>
-                    
                 ))}
             </div>
+
+            {categorias.map(categoria => (
+                <div key={categoria.categoriaID}>
+                    <h3>{categoria.nome}</h3>
+                    <div className="scroll-container">
+                        {artigosPorCategoria[categoria.categoriaID]?.map((artigo, index) => (
+                            <Link key={index} to={`/view/${artigo.artigoID}`}>
+                                <Card
+                                    title={artigo.titulo}
+                                    description={artigo.descricao}
+                                    category={artigo.categoria.nome}
+                                    image={artigo.imagemURL}
+                                />
+                            </Link>
+                        ))}
+                    </div>
+                </div>
+            ))}
         </div>
     );
 }

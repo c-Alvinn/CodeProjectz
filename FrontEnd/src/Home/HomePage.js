@@ -13,12 +13,14 @@ function HomePage() {
 
     const fetchArtigos = async () => {
         try {
-            const response = await axios.get('http://192.168.7.21:6419/artigo');
+            const response = await axios.get('http://localhost:6419/artigo');
             if (response.status === 200) {
+                console.log(response.data);
                 const artigosComImagens = await Promise.all(response.data.map(async (artigo) => {
                     return await fetchArtigoCompleto(artigo);
                 }));
                 setArtigos(artigosComImagens);
+                console.log(artigosComImagens);
             }
         } catch (error) {
             console.error('Erro ao buscar artigos:', error);
@@ -28,7 +30,8 @@ function HomePage() {
     const fetchArtigoCompleto = async (artigo) => {
         try {
             // Assume que o ID da imagem está armazenado no campo imagemID do artigo
-            const resImagem = await axios.get(`http://192.168.7.21:6419/conteudo/id/${artigo.imagem.conteudoID}`, { responseType: 'blob' });
+            console.log(artigo.imagem.conteudoID);
+            const resImagem = await axios.get(`http://localhost:6419/conteudo/id/${artigo.imagem.conteudoID}`, { responseType: 'blob' });
             const urlImagem = URL.createObjectURL(resImagem.data);
             return {
                 ...artigo,

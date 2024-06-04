@@ -103,9 +103,9 @@ public class ArtigoController {
         return ResponseEntity.status(HttpStatus.OK).body(lista);
     }
 
-    @GetMapping("/lastFive/{nome}")
-    public ResponseEntity<List<Artigo>> findLastFiveByCategoria(@PathVariable(value = "nome") String nome){
-        List<Artigo> lista = artigoRepository.findTop5ByCategoriaNomeOrderByDataPostagemDesc(nome, PageRequest.of(0, 5));
+    @GetMapping("/lastFive/{id}")
+    public ResponseEntity<List<Artigo>> findLastFiveByCategoria(@PathVariable(value = "id") Integer id){
+        List<Artigo> lista = artigoRepository.findTop5ByCategoriaCategoriaIDOrderByDataPostagemDesc(id, PageRequest.of(0, 5));
         if (lista.isEmpty()) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }

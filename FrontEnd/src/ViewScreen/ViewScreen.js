@@ -22,7 +22,7 @@ function ViewScreen({  }) { // Utilizando match para capturar o parâmetro da ro
 
   const fetchArticleData = async () => {
       try {
-          const response = await axios.get(`http://192.168.7.21:6419/artigo/id/${artigoID}`);
+          const response = await axios.get(`http://localhost:6419/artigo/id/${artigoID}`);
           if (response.data) {
               setArticleData(response.data);
               fetchContentData(response.data.conteudo.conteudoID, setMarkdownData);
@@ -36,7 +36,7 @@ function ViewScreen({  }) { // Utilizando match para capturar o parâmetro da ro
 
   const fetchContentData = async (conteudoID, setter) => {
       try {
-          const response = await axios.get(`http://192.168.7.21:6419/conteudo/id/${conteudoID}`, {
+          const response = await axios.get(`http://localhost:6419/conteudo/id/${conteudoID}`, {
               responseType: 'blob'  // Importante para arquivos binários como imagens
           });
           const url = URL.createObjectURL(response.data);

@@ -42,7 +42,7 @@ function AddScreen() {
             axios.post('http://localhost:6419/categoria', { nome: customCategory })
                 .then(response => {
                     fetchCategories();
-                    setCustomCategory(''); 
+                    setCustomCategory('');
                 })
                 .catch(error => {
                     console.error('Erro ao adicionar categoria:', error);
@@ -121,14 +121,14 @@ function AddScreen() {
                 />
 
                 <label>Insira aqui seu arquivo Markdown:</label>
-                <label>Ainda não tem seu arquivo Markdown?</label>
-                <a src="https://pandao.github.io/editor.md/en.html">clique aqui</a>
+
                 <input
                     type="file"
                     accept=".md"
                     onChange={handleMarkdownChange}
                 />
-
+                <label id='cliqueAqui'>Ainda não tem seu arquivo Markdown? 
+                    <a href="https://pandao.github.io/editor.md/en.html" target="_blank">Clique aqui</a></label>
                 <select
                     value={category}
                     onChange={(e) => setCategory(e.target.value)}
@@ -139,7 +139,7 @@ function AddScreen() {
                     ))}
                     <option value="custom">Outra (especifique)</option>
                 </select>
-                
+
                 {category === "custom" && (
                     <div>
                         <input

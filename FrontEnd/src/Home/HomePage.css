@@ -1,12 +1,19 @@
 /* HomePage.css */
+.home-page{
+  max-width: 100vw;
+}
+
 .scroll-container {
-    overflow-x: auto; /* Ativa a barra de rolagem horizontal conforme necessário */
-    overflow-y: hidden; /* Previne a barra de rolagem vertical */
-    white-space: nowrap; /* Previne quebra de linha */
-    padding: 0px;
-    width: 100vw; /* Usa 100% da largura do elemento pai, não da viewport */
-    box-sizing: border-box; /* Inclui padding no cálculo da largura */
-  }
+  overflow: auto;
+  white-space: nowrap; /* Previne quebra de linha */
+}
+
+.scroll-container > * {
+  display: inline-block; /* Faz com que os elementos se comportem como elementos inline e aceitem largura e altura */
+  vertical-align: top; /* Alinha os elementos verticalmente ao topo */
+  margin-right: 10px; /* Adiciona margem entre os elementos */
+}
+
   
   h2{
     margin-left: 30px;

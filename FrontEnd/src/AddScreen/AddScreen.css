@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     padding: 20px;
-    margin-top: 35vh;
+    margin-top: 5vh;
     align-items: center; /* Centraliza verticalmente o formulário */
 }
 
@@ -22,11 +22,20 @@
     color: #76ABAE; /* Cor que combina com o botão */
 }
 
-.add-form label {
-    color: #aaa; /* Cor para legendas, contrastando com o fundo */
+.add-form label, a {
+    color: #aaa; 
     font-weight: bold; /* Destaca o texto da legenda */
     margin-bottom: 10px; /* Espaço abaixo do rótulo */
     display: block; /* Mantém cada legenda em uma linha separada */
+    text-decoration: none;
+}
+
+#cliqueAqui{
+    font-size: 12px;   
+}
+
+#cliqueAqui a{
+    color: #76ABAE;
 }
 
 .add-form input, .add-form select, .add-form textarea {

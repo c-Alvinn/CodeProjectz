@@ -120,6 +120,8 @@ public class ArtigoController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
         artigoRepository.delete(artigo);
+        conteudoRepository.delete(conteudoRepository.findByConteudoID(artigo.getImagem().getConteudoID()));
+        conteudoRepository.delete(conteudoRepository.findByConteudoID(artigo.getConteudo().getConteudoID()));
         return ResponseEntity.status(HttpStatus.OK).body("Artigo excluido com sucesso!");
     }
 }

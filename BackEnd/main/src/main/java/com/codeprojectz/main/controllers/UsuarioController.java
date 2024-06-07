@@ -86,7 +86,7 @@ public class UsuarioController {
         return ResponseEntity.status(HttpStatus.OK).body(user);
     }
 
-    @GetMapping("perfil/{id}")
+    @GetMapping("/perfil/{id}")
     public ResponseEntity<Object> exibirPerfil(@PathVariable(value = "id") Integer id){
         Optional<Usuario> usuarioO = usuarioRepository.findById(id);
         if(usuarioO.isEmpty()) {

@@ -17,4 +17,6 @@ public interface ArtigoRepository extends JpaRepository<Artigo, Integer> {
     List<Artigo> findTop5ByOrderByDataPostagemDesc(Pageable pageable);
 
     List<Artigo> findTop5ByCategoriaCategoriaIDOrderByDataPostagemDesc(Integer categoriaID, Pageable pageable);
+
+    List<Artigo> findByTituloContainingIgnoreCaseOrDescricaoContainingIgnoreCaseOrCategoriaNomeContainingIgnoreCase(String titulo, String descricao, String nome);
 }

@@ -1,6 +1,7 @@
 package com.codeprojectz.main.controllers;
 
 import com.codeprojectz.main.dtos.UsuarioRecordDto;
+import com.codeprojectz.main.dtos.UsuarioUpdateDto;
 import com.codeprojectz.main.models.Usuario;
 import com.codeprojectz.main.repositories.UsuarioRepository;
 import jakarta.validation.Valid;
@@ -8,6 +9,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -71,6 +73,18 @@ public class UsuarioController {
         }
         var usuarioModel = usuarioO.get();
         BeanUtils.copyProperties(usuarioRecordDto, usuarioModel);
+        return ResponseEntity.status(HttpStatus.OK).body(usuarioRepository.save(usuarioModel));
+    }
+
+    @PutMapping("/perfil/alterar/{id}")
+    public ResponseEntity<Object> updatePerfil(@PathVariable(value="id") Integer id,
+                                                @RequestBody @Valid UsuarioUpdateDto usuarioUpdateDto) {
+        Optional<Usuario> usuarioO = usuarioRepository.findById(id);
+        if(usuarioO.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuario not found.");
+        }
+        var usuarioModel = usuarioO.get();
+        BeanUtils.copyProperties(usuarioUpdateDto, usuarioModel);
         return ResponseEntity.status(HttpStatus.OK).body(usuarioRepository.save(usuarioModel));
     }
 

@@ -18,6 +18,10 @@
   align-items: center; /* Centraliza os itens */
 }
 
+.article-image{
+  width: 40%;
+}
+
 .article-title {
   margin-top: 0;
   color: #ccc;

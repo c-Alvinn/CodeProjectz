@@ -2,18 +2,18 @@
     display: flex;
     justify-content: center;
     padding: 20px;
-    margin-top: 5vh;
+    margin-top: 10%;
     align-items: center; /* Centraliza verticalmente o formulário */
 }
 
 .add-form {
     max-width: 500px;
     width: 100%;
-    background: #333; /* Fundo escuro */
+    background: #333;
     padding: 30px;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra sutil */
-    color: #fff; /* Texto branco */
+    color: #fff; 
 }
 
 .add-form h2 {

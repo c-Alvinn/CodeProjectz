@@ -4,6 +4,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import './Sidebar.css';
 import userImage from '../assets/images/placeholder.png'; 
 
+
 function Sidebar() {
     const [isOpen, setIsOpen] = useState(false);
     const navigate = useNavigate();

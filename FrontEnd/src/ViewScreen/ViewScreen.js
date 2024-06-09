@@ -60,7 +60,7 @@ function ViewScreen({  }) { // Utilizando match para capturar o parâmetro da ro
             <div className="article-container">
                 <h1 className="article-title">{articleData.titulo}</h1>
                 <h2 className="article-instructor">Criado por: {articleData.criador.nome}</h2>
-                {imageData && <img src={imageData} alt="Article visual content" />}
+                {imageData && <img className="article-image" src={imageData} alt="Article visual content" />}
                 <p className="article-content">{articleData.descricao}</p>
                 <h3 className="article-category">Categoria: {articleData.categoria.nome}</h3>
                 <ReactMarkdown>{markdownString}</ReactMarkdown>

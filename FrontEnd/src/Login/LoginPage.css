@@ -8,7 +8,7 @@ html {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+
   background-color: #222831;
   color: #f0f8ff;
 }
@@ -21,6 +21,7 @@ html {
   width: 70vw;
   height: 70vh; /* Aumentando a altura para acomodar mensagens de erro */
   margin: auto;
+  margin-top: 10%;
 }
 
 .left-section,
@@ -30,20 +31,20 @@ html {
 }
 
 .left-section {
-  width: 50%;
+  width: 40%;
   background-image: url('/src/assets/images/placeholder-image.jpg');
   background-size: cover;
   background-position: center;
 }
 
 .right-section {
-  width: 50%;
+  width: 60%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   margin: 10px;
-  overflow: hidden;
+  overflow: auto;
 }
 
 .login-title {

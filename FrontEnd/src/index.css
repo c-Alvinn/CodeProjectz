@@ -14,7 +14,7 @@ code {
 
 *{
   scrollbar-width: thin;
-  scrollbar-color: #76ABAE;
+  scrollbar-color: #76ABAE #31363F;
 }
 
 *::-webkit-scrollbar {

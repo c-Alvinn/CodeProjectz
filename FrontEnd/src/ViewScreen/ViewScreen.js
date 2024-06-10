@@ -11,6 +11,7 @@ function ViewScreen() {
     const [articleData, setArticleData] = useState(null);
     const [imageData, setImageData] = useState(null);
     const [markdownString, setMarkdownString] = useState(null);
+    const [markdownData, setMarkdownData] = useState(null);
     const [error, setError] = useState('');
 
     useEffect(() => {

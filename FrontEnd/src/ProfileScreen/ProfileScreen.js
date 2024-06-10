@@ -8,14 +8,14 @@ const ProfileScreen = () => {
 
 // Função para formatar a data
 const formatDate = (dateString) => {
-  const [year, month, day] = dateString.split('-');
+  const [year, month, day] = dateString.split('T')[0].split('-');
   return `${day}/${month}/${year}`;
 };
 
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const response = await axios.get('/usuário/perfil/${userID}'); 
+        const response = await axios.get('http://localhost:6419/usuario/perfil/1'); 
         setUser(response.data);
         setLoading(false);
       } catch (error) {
@@ -49,4 +49,3 @@ const formatDate = (dateString) => {
 };
 
 export default ProfileScreen;
-    

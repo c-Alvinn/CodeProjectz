@@ -2,8 +2,8 @@
     display: flex;
     justify-content: center;
     padding: 20px;
-    margin-top: 10%;
-    align-items: center; /* Centraliza verticalmente o formulário */
+    margin-top: 10vh;
+    align-items: center; 
 }
 
 .add-form {
@@ -19,14 +19,14 @@
 .add-form h2 {
     margin-bottom: 20px;
     text-align: center;
-    color: #76ABAE; /* Cor que combina com o botão */
+    color: #76ABAE;
 }
 
 .add-form label, a {
     color: #aaa; 
-    font-weight: bold; /* Destaca o texto da legenda */
-    margin-bottom: 10px; /* Espaço abaixo do rótulo */
-    display: block; /* Mantém cada legenda em uma linha separada */
+    font-weight: bold; 
+    margin-bottom: 10px; 
+    display: block; 
     text-decoration: none;
 }
 
@@ -58,16 +58,16 @@
 }
 
 .add-form input::placeholder, .add-form select::placeholder, .add-form textarea::placeholder {
-    color: #aaa; /* Cor dos placeholders */
+    color: #aaa; 
 }
 
 .add-form button {
     width: 100%;
-    padding: 10px 20px; 
+    padding: 15px 20px; 
     border: none;
     border-radius: 4px;
     background-color: #76ABAE; /* Cor do botão */
-    color: white; /* Cor do texto do botão */
+    color: #eee;
     cursor: pointer;
     transition: background-color 0.3s; /* Transição suave */
 }
@@ -89,21 +89,19 @@
 }
 
 .add-form select {
-    width: 95%; /* Mesma largura dos outros campos */
-    padding: 10px; /* Espaço interno */
-    margin-bottom: 20px; /* Espaço abaixo do select */
-    background-color: #444; /* Fundo consistente com o resto do formulário */
-    border: 1px solid #555; /* Borda sutil */
-    border-radius: 4px; /* Borda arredondada */
-    color: #fff; /* Texto branco */
-    cursor: pointer; /* Indicador de interatividade */
+    width: 100%; /* Mesma largura dos outros campos */
+    padding: 10px; 
+    margin-bottom: 20px;
+    border: 1px solid #555; 
+    border-radius: 4px; 
+    cursor: pointer; 
     appearance: none; /* Remove aparência padrão do navegador */
 
     /* Adicionando uma seta para baixo como ícone de fundo */
     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24' fill='white'><path d='M7 10l5 5 5-5z'/></svg>");
-    background-repeat: no-repeat; /* Para evitar repetição */
-    background-position: right 10px center; /* Posição da seta */
-    background-size: 12px; /* Tamanho do ícone para garantir que seja visível, mas não grande demais */
+    background-repeat: no-repeat; 
+    background-position: right 10px center; 
+    background-size: 15px; 
 }
 
 

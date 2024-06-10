@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ReactMarkdown from 'react-markdown';
+import rehypeRaw from 'rehype-raw';
+import remarkGfm from 'remark-gfm';
 import './ViewScreen.css';
 import { useParams } from 'react-router-dom';
 
@@ -65,7 +67,11 @@ function ViewScreen() {
                 <h2 className="article-instructor">Criado por: {articleData.criador.nome}</h2>
                 <p className="article-content">{articleData.descricao}</p>
                 <h3 className="article-category">Categoria: {articleData.categoria.nome}</h3>
-                <ReactMarkdown>{markdownString}</ReactMarkdown>
+                <ReactMarkdown 
+                    children={markdownString}
+                    remarkPlugins={[remarkGfm]}
+                    rehypePlugins={[rehypeRaw]}
+                />
             </div>
         </div>
     );

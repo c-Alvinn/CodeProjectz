@@ -12,6 +12,24 @@ code {
     monospace;
 }
 
+*{
+  scrollbar-width: thin;
+  scrollbar-color: #76ABAE;
+}
+
+*::-webkit-scrollbar {
+  width: 10px;
+}
+
+*::-webkit-scrollbar-track{
+  background: black;
+}
+
+*::-webkit-scrollbar-thumb{
+  background-color: #76ABAE;
+  border-radius: 20px;
+}
+
 /* Header.css */
 header {
   position: fixed;

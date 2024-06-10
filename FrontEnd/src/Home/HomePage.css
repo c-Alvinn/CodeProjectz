@@ -1,6 +1,6 @@
 /* HomePage.css */
 .home-page {
-  max-width: 100vw;
+  max-width: 99vw;
   min-height: calc(100vh - 60px);
   margin-top: 7vh;
   box-sizing: border-box;
@@ -11,18 +11,18 @@
 
 .scroll-container {
   overflow-x: auto;
-  overflow-y: hidden; 
+  overflow-y: hidden;
   white-space: nowrap;
-  padding: 20px 0; 
+  padding: 20px 0;
 }
 
-.scroll-container > * {
+.scroll-container>* {
   display: inline-block;
   vertical-align: top;
   margin-right: 10px;
 }
-  
-  h2{
-    margin-left: 20px;
-    margin-top: 20px; 
-  }
+
+h2 {
+  margin-left: 20px;
+  margin-top: 20px;
+}

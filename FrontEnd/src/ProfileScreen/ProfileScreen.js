@@ -6,10 +6,16 @@ const ProfileScreen = () => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
+// Função para formatar a data
+const formatDate = (dateString) => {
+  const [year, month, day] = dateString.split('-');
+  return `${day}/${month}/${year}`;
+};
+
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const response = await axios.get('/api/user/profile'); // Supondo que esta seja a rota correta para obter o perfil do usuário
+        const response = await axios.get('/usuário/perfil/${userID}'); 
         setUser(response.data);
         setLoading(false);
       } catch (error) {
@@ -36,7 +42,7 @@ const ProfileScreen = () => {
         <p><strong>Nome:</strong> {user && user.nome}</p>
         <p><strong>Sobrenome:</strong> {user && user.sobrenome}</p>
         <p><strong>Email:</strong> {user && user.email}</p>
-        <p><strong>Data de Nascimento:</strong> {user && user.dataNascimento}</p>
+        <p><strong>Data de Nascimento:</strong> {user && user.dataNascimento ? formatDate(user.dataNascimento) : ''}</p>
       </div>
     </div>
   );

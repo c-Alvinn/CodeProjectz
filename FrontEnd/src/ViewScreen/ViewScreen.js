@@ -68,6 +68,7 @@ function ViewScreen() {
                 <h2 className="article-instructor">Criado por: {articleData.criador.nome}</h2>
                 <p className="article-content">{articleData.descricao}</p>
                 <h3 className="article-category">Categoria: {articleData.categoria.nome}</h3>
+                <div className='line'></div>
                 <ReactMarkdown 
                     children={markdownString}
                     remarkPlugins={[remarkGfm]}

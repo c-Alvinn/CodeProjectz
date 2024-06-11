@@ -104,4 +104,9 @@
     background-size: 15px; 
 }
 
-
+.message.error {
+    color: #ff4d4d; /* Cor vermelha para a mensagem de erro */
+    font-size: 0.9em;
+    text-align: center;
+    margin-top: 10px; /* Espaço acima da mensagem de erro */
+}

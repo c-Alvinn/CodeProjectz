@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios'; // Importa Axios para fazer requisições HTTP
 import { useNavigate } from 'react-router-dom';
 import './LoginPage.css';
@@ -8,6 +8,18 @@ function LoginPage() {
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState(''); // Corrigindo para 'senha'
     const [error, setError] = useState('');
+    const [successMessage, setSuccessMessage] = useState('');
+
+    useEffect(() => {
+        const signupSuccess = localStorage.getItem('signupSuccess');
+        if (signupSuccess) {
+            setSuccessMessage('Usuário cadastrado com sucesso!');
+            localStorage.removeItem('signupSuccess');
+            setTimeout(() => {
+                setSuccessMessage('');
+            }, 3000);
+        }
+    }, []);
 
     const handleLogin = (event) => {
         event.preventDefault();
@@ -44,6 +56,7 @@ function LoginPage() {
             <div className="left-section">{/* Placeholder para a imagem do lado esquerdo */}</div>
             <div className="right-section">
                 <h1 className="login-title">Login</h1>
+                {successMessage && <p className="success-message">{successMessage}</p>} {/* Exibe mensagem de sucesso se houver */}
                 <form className="login-form" onSubmit={handleLogin}>
                     <input
                         type="text"

@@ -15,7 +15,7 @@ const formatDate = (dateString) => {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const response = await axios.get('http://localhost:6419/usuario/perfil/1'); 
+        const response = await axios.get(`http://localhost:6419/usuario/perfil/${userID}`); 
         setUser(response.data);
         setLoading(false);
       } catch (error) {

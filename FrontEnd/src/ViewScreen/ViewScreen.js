@@ -64,10 +64,13 @@ function ViewScreen() {
         <div className="article-screen">
             <div className="article-container">
                 {imageData && <img className="article-image" src={imageData} alt="Article visual content" />}
+                <div className='line'></div>
                 <h1 className="article-title">{articleData.titulo}</h1>
-                <h2 className="article-instructor">Criado por: {articleData.criador.nome}</h2>
                 <p className="article-content">{articleData.descricao}</p>
-                <h3 className="article-category">Categoria: {articleData.categoria.nome}</h3>
+                <div className="caixa">
+                    <p className="article-category">Categoria: {articleData.categoria.nome}</p>
+                    <p className="article-instructor">Criado por: {articleData.criador.nome}</p>
+                </div>
                 <div className='line'></div>
                 <ReactMarkdown 
                     children={markdownString}

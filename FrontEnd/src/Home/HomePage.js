@@ -8,22 +8,19 @@ function HomePage() {
     const [artigos, setArtigos] = useState([]);
     const [categorias, setCategorias] = useState([]);
 
-
     useEffect(() => {
         fetchArtigos();
-        fetchCategorias()
+        fetchCategorias();
     }, []);
 
     const fetchArtigos = async () => {
         try {
             const response = await axios.get('http://localhost:6419/artigo/lastFive');
             if (response.status === 200) {
-                console.log(response.data);
                 const artigosComImagens = await Promise.all(response.data.map(async (artigo) => {
                     return await fetchArtigoCompleto(artigo);
                 }));
                 setArtigos(artigosComImagens);
-                console.log(artigosComImagens);
             }
         } catch (error) {
             console.error('Erro ao buscar artigos:', error);
@@ -32,8 +29,6 @@ function HomePage() {
 
     const fetchArtigoCompleto = async (artigo) => {
         try {
-            // Assume que o ID da imagem está armazenado no campo imagemID do artigo
-            console.log(artigo.imagem.conteudoID);
             const resImagem = await axios.get(`http://localhost:6419/conteudo/id/${artigo.imagem.conteudoID}`, { responseType: 'blob' });
             const urlImagem = URL.createObjectURL(resImagem.data);
             return {
@@ -49,8 +44,6 @@ function HomePage() {
         }
     };
 
-
-    //Pegando todas as categorias:
     const fetchCategorias = async () => {
         try {
             const response = await axios.get('http://localhost:6419/categoria');
@@ -62,6 +55,7 @@ function HomePage() {
         }
     };
 
+
     function FetchLastFiveArticles({ categoryId }) {
         const [artigosCategoria, setArtigosCategoria] = useState([]);
     
@@ -72,7 +66,7 @@ function HomePage() {
                     if (response.status === 200) {
                         const artigosComImagens = await Promise.all(response.data.map(async (artigo) => {
                             const urlImagem = await fetchArtigoImageURL(artigo.imagem.conteudoID);
-                            return {...artigo, imagemURL: urlImagem};
+                            return { ...artigo, imagemURL: urlImagem };
                         }));
                         setArtigosCategoria(artigosComImagens);
                     }
@@ -97,13 +91,14 @@ function HomePage() {
         return (
             <>
                 {artigosCategoria.map((artigo, index) => (
-                    <Card
-                        key={index}
-                        title={artigo.titulo}
-                        description={artigo.descricao}
-                        category={artigo.categoria.nome}
-                        image={artigo.imagemURL}
-                    />
+                    <Link key={index} to={`/view/${artigo.artigoID}`}>
+                        <Card
+                            title={artigo.titulo}
+                            description={artigo.descricao}
+                            category={artigo.categoria.nome}
+                            image={artigo.imagemURL}
+                        />
+                    </Link>
                 ))}
             </>
         );
@@ -114,7 +109,6 @@ function HomePage() {
         <div className="home-page">
             <h2>Últimos Artigos</h2>
             <div className="scroll-container">
-                {/* Renderiza os últimos artigos */}
                 {artigos.map((artigo, index) => (
                     <Link key={index} to={`/view/${artigo.artigoID}`}>
                         <Card
@@ -126,17 +120,17 @@ function HomePage() {
                     </Link>
                 ))}
             </div>
-
-            {/* Renderiza um scroll-container para cada categoria */}
             {categorias.map((categoria, index) => (
                 <div key={index}>
                     <h2>{categoria.nome}</h2>
+                    
                     <div className="scroll-container">
-                        {/* Componente para buscar os últimos 5 artigos de uma categoria */}
-                        <FetchLastFiveArticles categoryId={categoria.id} />
+                        <FetchLastFiveArticles categoryId={categoria.categoriaID} />
                     </div>
                 </div>
             ))}
+
+
         </div>
     );
 }

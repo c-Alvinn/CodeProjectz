@@ -1,0 +1,14 @@
+.search-screen {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    margin-top: 10vh;
+    align-items: center; 
+}
+
+.search-screen h2 {
+    margin-bottom: 20px;
+    text-align: center;
+    color: #76ABAE;
+}
+

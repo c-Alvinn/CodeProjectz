@@ -9,6 +9,7 @@ import HomePage from './Home/HomePage'; // Importa a página inicial
 import AddScreen from './AddScreen/AddScreen';
 import ViewScreen from './ViewScreen/ViewScreen';
 import ProfileScreen from './ProfileScreen/ProfileScreen';
+import SearchScreen from './SearchScreen/SearchScreen';
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
           <Route path="/add" element={<AddScreen />} /> {/* Rota para a página de novo curso/projeto */}
           <Route path="/view/:artigoID" element={<ViewScreen />} /> {/* Rota para a página de novo curso/projeto */}
           <Route path="/profile" element={<ProfileScreen />} /> {/* Rota para a página de novo curso/projeto */}
+          <Route path='/search' element={<SearchScreen />} />{}
         </Routes>
       </div>
     </Router>

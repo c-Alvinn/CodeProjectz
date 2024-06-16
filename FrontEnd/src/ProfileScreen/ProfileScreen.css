@@ -1,7 +1,7 @@
 .ProfileScreen-container {
     display: flex;
-    flex-direction: column; /* Alterando a direção do flex para coluna */
-    align-items: center; /* Centralizando os itens na vertical */
+    flex-direction: column;
+    align-items: center;
     margin-top: 20px;
     padding: 20px;
     text-align: center;
@@ -9,7 +9,7 @@
 
 .ProfileScreen-container h1 {
     color: #fff;
-    margin-top: 20px;
+    margin-top: 20%;
     margin-bottom: 20px;
 }
 
@@ -22,4 +22,36 @@
     height: 160px;
     border-radius: 50%;
     object-fit: cover;
+}
+
+.edit-profile-form {
+    display: flex;
+    padding: 15px 0px;
+    flex-direction: column;
+    width: 300px;
+}
+
+.edit-profile-form input {
+    margin-bottom: 10px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+}
+
+.edit-profile-form button {
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    background-color: #4CAF50;
+    color: white;
+    margin-top: 10px;
+}
+
+.error-message {
+    color: red;
+    margin-top: 10px;
 }

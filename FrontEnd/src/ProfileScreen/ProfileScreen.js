@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import './ProfileScreen.css'
+import './ProfileScreen.css';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const ProfileScreen = () => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
 // Função para formatar a data
 const formatDate = (dateString) => {
@@ -43,7 +45,8 @@ const formatDate = (dateString) => {
         <p><strong>Sobrenome:</strong> {user && user.sobrenome}</p>
         <p><strong>Email:</strong> {user && user.email}</p>
         <p><strong>Data de Nascimento:</strong> {user && user.dataNascimento ? formatDate(user.dataNascimento) : ''}</p>
-      </div>
+        <button onClick={() => navigate('/editprofile')}>Editar Perfil</button>
+    </div>
     </div>
   );
 };

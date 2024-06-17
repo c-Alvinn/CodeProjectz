@@ -17,7 +17,7 @@ const EditProfileScreen = () => {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const response = await axios.get('http://localhost:6419/usuario/perfil/1');
+        const response = await axios.get('http://192.168.7.21:6419/usuario/perfil/1');
         setUser({
           nome: response.data.nome,
           sobrenome: response.data.sobrenome,
@@ -57,7 +57,7 @@ const EditProfileScreen = () => {
     }
 
     try {
-      const response = await axios.put('http://localhost:6419/usuario/perfil/alterar/1', user);
+      const response = await axios.put('http://192.168.7.21:6419/usuario/perfil/alterar/1', user);
       if (response.status === 200) {
         navigate('/profile');
       }

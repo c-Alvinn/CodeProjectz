@@ -15,7 +15,7 @@ function SearchScreen() {
 
     const fetchArtigos = async (searchTerm) => {
         try {
-            const response = await axios.get(`http://localhost:6419/artigo/search/${searchTerm}`);
+            const response = await axios.get(`http://192.168.7.21:6419/artigo/search/${searchTerm}`);
             if (response.status === 200) {
                 const artigosComImagens = await Promise.all(response.data.map(async (artigo) => {
                     console.log(artigo)
@@ -30,7 +30,7 @@ function SearchScreen() {
 
     const fetchArtigoCompleto = async (artigo) => {
         try {
-            const resImagem = await axios.get(`http://localhost:6419/conteudo/id/${artigo.imagem.conteudoID}`, { responseType: 'blob' });
+            const resImagem = await axios.get(`http://192.168.7.21:6419/conteudo/id/${artigo.imagem.conteudoID}`, { responseType: 'blob' });
             const urlImagem = URL.createObjectURL(resImagem.data);
             return {
                 ...artigo,

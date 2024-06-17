@@ -15,9 +15,10 @@ function SearchScreen() {
 
     const fetchArtigos = async (searchTerm) => {
         try {
-            const response = await axios.get('http://localhost:6419/artigo/search/${searchTerm}');
+            const response = await axios.get(`http://localhost:6419/artigo/search/${searchTerm}`);
             if (response.status === 200) {
                 const artigosComImagens = await Promise.all(response.data.map(async (artigo) => {
+                    console.log(artigo)
                     return await fetchArtigoCompleto(artigo);
                 }));
                 setArtigos(artigosComImagens);
@@ -29,7 +30,7 @@ function SearchScreen() {
 
     const fetchArtigoCompleto = async (artigo) => {
         try {
-            const resImagem = await axios.get('http://localhost:6419/conteudo/id/${artigo.imagem.conteudoID}', { responseType: 'blob' });
+            const resImagem = await axios.get(`http://localhost:6419/conteudo/id/${artigo.imagem.conteudoID}`, { responseType: 'blob' });
             const urlImagem = URL.createObjectURL(resImagem.data);
             return {
                 ...artigo,
@@ -39,7 +40,7 @@ function SearchScreen() {
             console.error('Erro ao buscar imagem do artigo:', error);
             return {
                 ...artigo,
-                imagemURL: '' // Placeholder padrão
+                imagemURL: ''
             };
         }
     };
@@ -48,10 +49,13 @@ function SearchScreen() {
         <div className="search-screen">
             <h2>Resultado da sua pesquisa</h2>
 
-            <h2>"{searchTerm}"</h2>
+            <h2>{searchTerm}</h2>
+            <div className='line'></div>
+
+            
             <div className="scroll-container">
                 {artigos.map((artigo, index) => (
-                    <Link key={index} to={'/view/${artigo.artigoID}'}>
+                    <Link key={index} to={`/view/${artigo.artigoID}`}>
                         <Card
                             title={artigo.titulo}
                             description={artigo.descricao}

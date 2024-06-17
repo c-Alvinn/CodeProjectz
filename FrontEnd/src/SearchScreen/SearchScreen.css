@@ -1,9 +1,10 @@
 .search-screen {
+    max-width: 99vw;
+    margin-top: 7vh;
+    box-sizing: border-box;
+    padding: 20px 0;
     display: flex;
-    justify-content: center;
-    padding: 20px;
-    margin-top: 10vh;
-    align-items: center; 
+    flex-direction: column;
 }
 
 .search-screen h2 {
@@ -12,3 +13,15 @@
     color: #76ABAE;
 }
 
+.scroll-container {
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    padding: 20px 0;
+  }
+  
+  .scroll-container>* {
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 10px;
+  }

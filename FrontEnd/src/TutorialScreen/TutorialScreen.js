@@ -1,5 +1,10 @@
 import React from 'react';
 import './TutorialScreen.css';
+import signUpImg from '../assets/images/SignUp-image.png';
+import loginImg from '../assets/images/Login-image.png';
+import viewScreenImg from '../assets/images/View-image.png';
+import addImg from '../assets/images/Add-image.png';
+
 
 const TutorialScreen = () => {
   return (
@@ -20,7 +25,7 @@ const TutorialScreen = () => {
               </ol>
             </div>
           </div>
-          <img src="FrontEnd/src/assets/images/SignUp-image.png" alt="Tela de Cadastro" className="tutorial-image"/>
+          <img src={signUpImg} alt="Tela de Cadastro" className="tutorial-image"/>
         </div>
       </section>
 
@@ -36,7 +41,7 @@ const TutorialScreen = () => {
               </ol>
             </div>
           </div>
-          <img src="FrontEnd/src/assets/images/Login-image.png" alt="Tela de Login" className="tutorial-image"/>
+          <img src={loginImg} alt="Tela de Login" className="tutorial-image"/>
         </div>
       </section>
 
@@ -53,7 +58,7 @@ const TutorialScreen = () => {
               </ol>
             </div>
           </div>
-          <img src="FrontEnd/src/assets/images/View-image.png" alt="Tela de Artigos" className="tutorial-image"/>
+          <img src={viewScreenImg} alt="Tela de Artigos" className="tutorial-image"/>
         </div>
       </section>
 
@@ -71,7 +76,7 @@ const TutorialScreen = () => {
               </ol>
             </div>
           </div>
-          <img src="FrontEnd/src/assets/images/Add-image.png" alt="Tela de Adicionar Artigos" className="tutorial-image"/>
+          <img src={addImg} alt="Tela de Adicionar Artigos" className="tutorial-image"/>
         </div>
       </section>
     </div>

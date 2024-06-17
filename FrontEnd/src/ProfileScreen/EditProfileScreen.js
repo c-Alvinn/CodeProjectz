@@ -8,6 +8,7 @@ const EditProfileScreen = () => {
     nome: '',
     sobrenome: '',
     email: '',
+    dataNascimento: '',
   });
   const [loading, setLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState('');
@@ -21,6 +22,7 @@ const EditProfileScreen = () => {
           nome: response.data.nome,
           sobrenome: response.data.sobrenome,
           email: response.data.email,
+          dataNascimento: response.data.dataNascimento.split('T')[0], // Assuming the date is in ISO format
         });
         setLoading(false);
       } catch (error) {
@@ -44,7 +46,7 @@ const EditProfileScreen = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!user.nome || !user.sobrenome || !user.email) {
+    if (!user.nome || !user.sobrenome || !user.email || !user.dataNascimento) {
       setErrorMessage('Todos os campos são obrigatórios.');
       return;
     }
@@ -94,6 +96,13 @@ const EditProfileScreen = () => {
           name="email"
           placeholder="Email"
           value={user.email}
+          onChange={handleChange}
+        />
+        <input
+          type="date"
+          name="dataNascimento"
+          placeholder="Data de Nascimento"
+          value={user.dataNascimento}
           onChange={handleChange}
         />
         <button type="submit">Salvar</button>

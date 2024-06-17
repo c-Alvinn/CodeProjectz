@@ -69,6 +69,10 @@ function AddScreen() {
         return response.data;
     };
 
+    const handleTutorialClick = () => {
+        navigate('/tutorial'); // Navega para a tela de tutorial
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -167,6 +171,9 @@ function AddScreen() {
                 )}
 
                 <button type="submit">Adicionar</button>
+                <button type="button" onClick={handleTutorialClick}>
+                            Tutorial CodeProjecz
+                        </button>
             </form>
         </div>
     );

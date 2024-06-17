@@ -1,0 +1,62 @@
+.TutorialScreen-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #31363F;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .TutorialScreen-container h1 {
+    text-align: center;
+    color: #fff;
+    margin-bottom: 20px;
+  }
+  
+  .tutorial-section {
+    margin-bottom: 30px;
+    width: 100%;
+    max-width: 800px;
+  }
+  
+  .tutorial-section h2 {
+    margin-bottom: 10px;
+    color: #fff;  }
+  
+  .tutorial-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .tutorial-text-cover {
+    background-color: #31363F;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    width: 100%;
+  }
+  
+  .tutorial-text {
+    text-align: left;
+  }
+  
+  .tutorial-text p, .tutorial-text ol {
+    margin: 0px 0px 0px 10px;
+    padding: 0;
+  }
+  
+  .tutorial-text ol {
+    padding-left: 20px;
+  }
+  
+  .tutorial-image {
+    width: 80%;
+    max-width: 400px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }

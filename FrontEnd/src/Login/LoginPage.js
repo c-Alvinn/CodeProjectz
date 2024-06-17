@@ -51,6 +51,10 @@ function LoginPage() {
         navigate('/signup'); // Navega para a tela de cadastro
     };
 
+    const handleTutorialClick = () => {
+        navigate('/tutorial'); // Navega para a tela de tutorial
+    };
+
     return (
         <div className="container">
             <div className="left-section">{/* Placeholder para a imagem do lado esquerdo */}</div>
@@ -74,6 +78,9 @@ function LoginPage() {
                         <button type="submit">Login</button>
                         <button type="button" onClick={handleSignUpClick}>
                             Não tem cadastro? Clique aqui
+                        </button>
+                        <button type="button" onClick={handleTutorialClick}>
+                            Tutorial CodeProjecz
                         </button>
                     </div>
                     {error && <p className="error-message">{error}</p>} {/* Exibe mensagem de erro se houver */}

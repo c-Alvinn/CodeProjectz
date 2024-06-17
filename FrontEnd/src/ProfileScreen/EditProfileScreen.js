@@ -105,7 +105,10 @@ const EditProfileScreen = () => {
           value={user.dataNascimento}
           onChange={handleChange}
         />
-        <button type="submit">Salvar</button>
+        <div className="botoes">
+        <button className='profile-button' type="submit">Salvar</button>
+        <button className='profile-button'  onClick={() => navigate('/profile')}>Voltar</button> {/* Botão Voltar */}
+        </div>
       </form>
       {errorMessage && <p className="error-message">{errorMessage}</p>}
     </div>

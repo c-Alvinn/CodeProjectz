@@ -40,15 +40,16 @@
     outline: none;
 }
 
-.edit-profile-form button {
-    padding: 10px;
-    font-size: 16px;
-    cursor: pointer;
-    border: none;
-    border-radius: 4px;
-    background-color: #4CAF50;
-    color: white;
-    margin-top: 10px;
+.botoes button {
+  flex: 1;
+  margin: 5px;
+  height: auto;
+  min-height: 50px;
+  min-width: 100px;
+}
+
+.profile-button:hover {
+    background-color: #568B8E; /* Cor ao passar o mouse */
 }
 
 .error-message {

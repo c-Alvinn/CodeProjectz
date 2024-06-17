@@ -45,7 +45,7 @@ const formatDate = (dateString) => {
         <p><strong>Sobrenome:</strong> {user && user.sobrenome}</p>
         <p><strong>Email:</strong> {user && user.email}</p>
         <p><strong>Data de Nascimento:</strong> {user && user.dataNascimento ? formatDate(user.dataNascimento) : ''}</p>
-        <button onClick={() => navigate('/editprofile')}>Editar Perfil</button>
+        <button className='profile-button' onClick={() => navigate('/editprofile')}>Editar Perfil</button>
     </div>
     </div>
   );

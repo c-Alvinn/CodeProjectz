@@ -15,7 +15,7 @@ function HomePage() {
 
     const fetchArtigos = async () => {
         try {
-            const response = await axios.get('http://192.168.7.21:6419/artigo/lastFive');
+            const response = await axios.get('http://localhost:6419/artigo/lastFive');
             if (response.status === 200) {
                 const artigosComImagens = await Promise.all(response.data.map(async (artigo) => {
                     return await fetchArtigoCompleto(artigo);
@@ -29,7 +29,7 @@ function HomePage() {
 
     const fetchArtigoCompleto = async (artigo) => {
         try {
-            const resImagem = await axios.get(`http://192.168.7.21:6419/conteudo/id/${artigo.imagem.conteudoID}`, { responseType: 'blob' });
+            const resImagem = await axios.get(`http://localhost:6419/conteudo/id/${artigo.imagem.conteudoID}`, { responseType: 'blob' });
             const urlImagem = URL.createObjectURL(resImagem.data);
             return {
                 ...artigo,
@@ -46,7 +46,7 @@ function HomePage() {
 
     const fetchCategorias = async () => {
         try {
-            const response = await axios.get('http://192.168.7.21:6419/categoria');
+            const response = await axios.get('http://localhost:6419/categoria');
             if (response.status === 200) {
                 setCategorias(response.data);
             }
@@ -62,7 +62,7 @@ function HomePage() {
         useEffect(() => {
             const fetchLastFiveArticles = async () => {
                 try {
-                    const response = await axios.get(`http://192.168.7.21:6419/artigo/lastFive/${categoryId}`);
+                    const response = await axios.get(`http://localhost:6419/artigo/lastFive/${categoryId}`);
                     if (response.status === 200) {
                         const artigosComImagens = await Promise.all(response.data.map(async (artigo) => {
                             const urlImagem = await fetchArtigoImageURL(artigo.imagem.conteudoID);
@@ -80,7 +80,7 @@ function HomePage() {
     
         const fetchArtigoImageURL = async (conteudoID) => {
             try {
-                const resImagem = await axios.get(`http://192.168.7.21:6419/conteudo/id/${conteudoID}`, { responseType: 'blob' });
+                const resImagem = await axios.get(`http://localhost:6419/conteudo/id/${conteudoID}`, { responseType: 'blob' });
                 return URL.createObjectURL(resImagem.data);
             } catch (error) {
                 console.error('Erro ao buscar imagem do artigo:', error);

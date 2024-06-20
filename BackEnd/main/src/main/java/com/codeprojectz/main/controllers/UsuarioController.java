@@ -1,15 +1,19 @@
 package com.codeprojectz.main.controllers;
 
 import com.codeprojectz.main.dtos.UsuarioRecordDto;
+import com.codeprojectz.main.dtos.UsuarioResponseDto;
 import com.codeprojectz.main.dtos.UsuarioUpdateDto;
 import com.codeprojectz.main.models.Usuario;
 import com.codeprojectz.main.repositories.UsuarioRepository;
+import com.codeprojectz.main.services.PasswordEncryptionService;
+
 import jakarta.validation.Valid;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.List;
 import java.util.Optional;
@@ -24,11 +28,24 @@ public class UsuarioController {
     @Autowired
     UsuarioRepository usuarioRepository;
 
-    @PostMapping("/criar")
-    public ResponseEntity<Usuario> saveUsuario(@RequestBody @Valid UsuarioRecordDto usuarioRecordDto) {
-        var usuario = new Usuario();
+    @Autowired
+    private PasswordEncryptionService passwordEncryptionService;
+
+    @PostMapping
+    public ResponseEntity<UsuarioResponseDto> saveUsuario(@RequestBody @Valid UsuarioRecordDto usuarioRecordDto, UriComponentsBuilder uriBuilder) {
+        Usuario usuario = new Usuario();
         BeanUtils.copyProperties(usuarioRecordDto, usuario);
-        return ResponseEntity.status(HttpStatus.CREATED).body(usuarioRepository.save(usuario));
+
+        if(usuarioRepository.existsByEmail(usuarioRecordDto.email()))
+            return ResponseEntity.badRequest().build();
+        
+        usuario.setSenha(passwordEncryptionService.encryptPassword(usuarioRecordDto.senha()));
+
+        usuarioRepository.save(usuario);
+
+        var uri = uriBuilder.path("usuarios/{id}").buildAndExpand(usuario.getUserID()).toUri();
+
+        return ResponseEntity.created(uri).body(new UsuarioResponseDto(usuario));
     }
 
     @GetMapping("/{id}")
@@ -87,17 +104,17 @@ public class UsuarioController {
         return ResponseEntity.status(HttpStatus.OK).body(usuarioRepository.save(usuarioModel));
     }
 
-    @PostMapping("/login")
-    public ResponseEntity<Usuario> login(@RequestBody UsuarioRecordDto usuarioRecordDto){
+    // @PostMapping("/login")
+    // public ResponseEntity<Usuario> login(@RequestBody UsuarioRecordDto usuarioRecordDto){
 
-        var user = usuarioRepository.findByEmailAndSenha(usuarioRecordDto.email(), usuarioRecordDto.senha());
+    //     var user = usuarioRepository.findByEmailAndSenha(usuarioRecordDto.email(), usuarioRecordDto.senha());
 
-        if(user==null) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
-        }
+    //     if(user==null) {
+    //         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+    //     }
 
-        return ResponseEntity.status(HttpStatus.OK).body(user);
-    }
+    //     return ResponseEntity.status(HttpStatus.OK).body(user);
+    // }
 
     @GetMapping("/perfil/{id}")
     public ResponseEntity<Object> exibirPerfil(@PathVariable(value = "id") Integer id){

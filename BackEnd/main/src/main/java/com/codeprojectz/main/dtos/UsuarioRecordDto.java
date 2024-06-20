@@ -10,7 +10,6 @@ public record UsuarioRecordDto(
         @NotBlank String sobrenome,
         @NotNull Date dataNascimento,
         @NotBlank String email,
-        @NotBlank String senha,
-        @NotNull boolean isLogged
+        @NotBlank String senha
 ) {
 }

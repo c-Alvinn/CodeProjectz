@@ -45,7 +45,7 @@ public class ArtigoController {
 
         artigo.setDataPostagem(new Date());
         artigo.setCategoria(categoriaRepository.findByNome(artigoRecordDto.categoriaNome()));
-        artigo.setCriador(usuarioRepository.findByUserID(artigoRecordDto.criadorID()));
+        artigo.setCriador(usuarioRepository.buscarPorEmail(artigoRecordDto.criadorEmail()));
 
         List<Integer> ids = conteudoRepository.findLastTwoIds();
         artigo.setImagem(conteudoRepository.findByConteudoID(ids.getLast()));

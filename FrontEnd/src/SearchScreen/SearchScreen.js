@@ -3,11 +3,14 @@ import './SearchScreen.css';
 import axios from 'axios';
 import { useSearchParams, Link } from'react-router-dom';
 import Card from '../Card/Card';
+import { TokenJWT } from '../Data/TokenJWT';
 
 function SearchScreen() {
     const [artigos, setArtigos] = useState([]);
     const [searchParams] = useSearchParams();
     const searchTerm = searchParams.get('query');
+
+    const token = TokenJWT();
 
     useEffect(() => {
         fetchArtigos(searchTerm);
@@ -15,7 +18,11 @@ function SearchScreen() {
 
     const fetchArtigos = async (searchTerm) => {
         try {
-            const response = await axios.get(`http://localhost:6419/artigo/search/${searchTerm}`);
+            const response = await axios.get(`http://localhost:6419/artigo/search/${searchTerm}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
             if (response.status === 200) {
                 const artigosComImagens = await Promise.all(response.data.map(async (artigo) => {
                     console.log(artigo)
@@ -30,7 +37,12 @@ function SearchScreen() {
 
     const fetchArtigoCompleto = async (artigo) => {
         try {
-            const resImagem = await axios.get(`http://localhost:6419/conteudo/id/${artigo.imagem.conteudoID}`, { responseType: 'blob' });
+            const resImagem = await axios.get(`http://localhost:6419/conteudo/id/${artigo.imagem.conteudoID}`,{
+                headers: {
+                    Authorization: `Bearer ${token}`
+                },
+                responseType: 'blob'
+            });
             const urlImagem = URL.createObjectURL(resImagem.data);
             return {
                 ...artigo,

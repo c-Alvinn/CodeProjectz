@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import './AddScreen.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { UserEmail } from '../Data/UserEmail';
+import { TokenJWT } from '../Data/TokenJWT';
 
 function AddScreen() {
     const navigate = useNavigate();
@@ -14,12 +16,19 @@ function AddScreen() {
     const [categories, setCategories] = useState([]);
     const [message, setMessage] = useState({ text: '', type: '' }); // Estado para mensagens
 
+    const userEmail = UserEmail();
+    const token = TokenJWT();
+
     useEffect(() => {
         fetchCategories();
     }, []);
 
     const fetchCategories = () => {
-        axios.get('http://localhost:6419/categoria')
+        axios.get('http://localhost:6419/categoria', {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
             .then(response => {
                 setCategories(response.data);
             })
@@ -43,7 +52,11 @@ function AddScreen() {
 
     const handleAddCategory = () => {
         if (customCategory.trim() !== '') {
-            axios.post('http://localhost:6419/categoria', { nome: customCategory })
+            axios.post('http://localhost:6419/categoria', { nome: customCategory }, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
                 .then(response => {
                     setMessage({ text: "Categoria adicionada com sucesso!", type: 'success' });
                     fetchCategories();
@@ -63,6 +76,7 @@ function AddScreen() {
         const response = await axios.post('http://localhost:6419/conteudo', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
+                Authorization: `Bearer ${token}`
             },
         });
 
@@ -94,12 +108,16 @@ function AddScreen() {
                 titulo: title,
                 descricao: description,
                 categoriaNome: finalCategory,
-                criadorID: 1,
+                criadorEmail: userEmail,
                 imagemID: imageId, // Adiciona a referência da imagem ao artigo
                 conteudoID: markdownId // Adiciona a referência do conteúdo Markdown ao artigo
             };
 
-            await axios.post('http://localhost:6419/artigo', artigoData);
+            await axios.post('http://localhost:6419/artigo', artigoData, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
             setMessage({ text: "Artigo adicionado com sucesso!", type: 'success' });
             navigate('/home'); // Redireciona para a página inicial
         } catch (error) {

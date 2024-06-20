@@ -2,22 +2,31 @@ import React, { useState, useEffect } from 'react';
 import './ProfileScreen.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { UserEmail } from '../Data/UserEmail';
+import { TokenJWT } from '../Data/TokenJWT';
 
 const ProfileScreen = () => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
+  const userEmail = UserEmail();
+  const token = TokenJWT();
+
 // Função para formatar a data
-const formatDate = (dateString) => {
-  const [year, month, day] = dateString.split('T')[0].split('-');
-  return `${day}/${month}/${year}`;
-};
+  const formatDate = (dateString) => {
+    const [year, month, day] = dateString.split('T')[0].split('-');
+    return `${day}/${month}/${year}`;
+  };
 
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const response = await axios.get('http://localhost:6419/usuario/perfil/1'); 
+        const response = await axios.get(`http://localhost:6419/usuario/perfil/${userEmail}`, {
+          headers: {
+              Authorization: `Bearer ${token}`
+          }
+      }); 
         setUser(response.data);
         setLoading(false);
       } catch (error) {
@@ -30,7 +39,7 @@ const formatDate = (dateString) => {
   }, []);
 
   if (loading) {
-    return <div>Carregando...</div>;
+    return <div style={{marginTop:200}}>Carregando...</div>;
   }
 
   return (

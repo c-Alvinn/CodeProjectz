@@ -3,10 +3,13 @@ import axios from 'axios';
 import './HomePage.css';
 import Card from '../Card/Card';
 import { Link } from 'react-router-dom';
+import { TokenJWT } from '../Data/TokenJWT';
 
 function HomePage() {
     const [artigos, setArtigos] = useState([]);
     const [categorias, setCategorias] = useState([]);
+
+    const token = TokenJWT();
 
     useEffect(() => {
         fetchArtigos();
@@ -15,7 +18,12 @@ function HomePage() {
 
     const fetchArtigos = async () => {
         try {
-            const response = await axios.get('http://localhost:6419/artigo/lastFive');
+            console.log(token);
+            const response = await axios.get('http://localhost:6419/artigo/lastFive', {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
             if (response.status === 200) {
                 const artigosComImagens = await Promise.all(response.data.map(async (artigo) => {
                     return await fetchArtigoCompleto(artigo);
@@ -29,7 +37,12 @@ function HomePage() {
 
     const fetchArtigoCompleto = async (artigo) => {
         try {
-            const resImagem = await axios.get(`http://localhost:6419/conteudo/id/${artigo.imagem.conteudoID}`, { responseType: 'blob' });
+            const resImagem = await axios.get(`http://localhost:6419/conteudo/id/${artigo.imagem.conteudoID}`,{
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    },
+                    responseType: 'blob'
+                });
             const urlImagem = URL.createObjectURL(resImagem.data);
             return {
                 ...artigo,
@@ -46,7 +59,11 @@ function HomePage() {
 
     const fetchCategorias = async () => {
         try {
-            const response = await axios.get('http://localhost:6419/categoria');
+            const response = await axios.get('http://localhost:6419/categoria', {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
             if (response.status === 200) {
                 setCategorias(response.data);
             }
@@ -62,7 +79,11 @@ function HomePage() {
         useEffect(() => {
             const fetchLastFiveArticles = async () => {
                 try {
-                    const response = await axios.get(`http://localhost:6419/artigo/lastFive/${categoryId}`);
+                    const response = await axios.get(`http://localhost:6419/artigo/lastFive/${categoryId}`, {
+                        headers: {
+                            Authorization: `Bearer ${token}`
+                        }
+                    });
                     if (response.status === 200) {
                         const artigosComImagens = await Promise.all(response.data.map(async (artigo) => {
                             const urlImagem = await fetchArtigoImageURL(artigo.imagem.conteudoID);
@@ -80,7 +101,12 @@ function HomePage() {
     
         const fetchArtigoImageURL = async (conteudoID) => {
             try {
-                const resImagem = await axios.get(`http://localhost:6419/conteudo/id/${conteudoID}`, { responseType: 'blob' });
+                const resImagem = await axios.get(`http://localhost:6419/conteudo/id/${conteudoID}`,{
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    },
+                    responseType: 'blob'
+                });
                 return URL.createObjectURL(resImagem.data);
             } catch (error) {
                 console.error('Erro ao buscar imagem do artigo:', error);

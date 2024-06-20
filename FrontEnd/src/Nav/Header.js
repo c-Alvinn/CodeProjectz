@@ -7,7 +7,7 @@ function Header() {
     const navigate = useNavigate();
     const location = useLocation();
 
-    const isLoginOrSignup = location.pathname === '/' || location.pathname === '/signup';
+    const isLoginOrSignup = location.pathname === '/' || location.pathname === '/signup' || location.pathname === '/tutorial';
 
     const goToHome = () => {
         if (!isLoginOrSignup) {
@@ -20,7 +20,7 @@ function Header() {
         navigate(`/search?query=${encodeURIComponent(searchTerm)}`); // Corrige a interpolação de strings
     };
 
-    const hideSearchOnRoutes = ['/', '/signup'];
+    const hideSearchOnRoutes = ['/', '/signup', '/tutorial'];
     const showSearchBar = !hideSearchOnRoutes.includes(location.pathname);
 
     return (
@@ -29,8 +29,8 @@ function Header() {
             color: 'white',
             padding: '10px',
             display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center'
+            justifyContent: 'space-evenly',
+            flexWrap: 'wrap',
         }}>
             <div style={{ width: '33%', visibility: 'hidden' }}></div>
             <div className="Logo-img" onClick={goToHome} style={{ cursor: 'pointer', flexShrink: 0 }}>
@@ -40,20 +40,19 @@ function Header() {
                 {showSearchBar ? (
                     <form onSubmit={handleSearch} style={{
                         display: 'flex',
-                        justifyContent: 'flex-end',
+                        justifyContent: 'flex-start',
                         alignItems: 'center',
-                        width: '50%'  
+                        width: '100%' ,
                     }}>
                         <input
                             type="text"
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
                             placeholder="Pesquisar Artigos"
-                            style={{
-                                flex: 1, 
+                            style={{ 
                                 padding: '8px',
                                 marginRight: '5px',
-                                minWidth: '150px', 
+                                minWidth: '120px', 
                                 color: '#DDDDDD',
                                 backgroundColor: '#222831'
                             }}

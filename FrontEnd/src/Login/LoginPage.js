@@ -11,6 +11,7 @@ function LoginPage() {
     const [successMessage, setSuccessMessage] = useState('');
 
     useEffect(() => {
+        localStorage.clear();
         const signupSuccess = localStorage.getItem('signupSuccess');
         if (signupSuccess) {
             setSuccessMessage('Usuário cadastrado com sucesso!');
@@ -29,16 +30,23 @@ function LoginPage() {
             senha, // Enviando 'senha' em vez de 'password'
         };
 
-        axios.post('http://localhost:6419/usuario/login', userData) // Certifique-se de que o endpoint está correto
+        axios.post('http://localhost:6419/login', userData) // Certifique-se de que o endpoint está correto
             .then((response) => {
                 if (response.status === 200) { // Se a resposta for bem-sucedida
+                    
+                    const token = response.data.token;
+                    localStorage.setItem('jwtToken', token);
+
+                    const email = response.data.email;
+                    localStorage.setItem('userEmail', email);
+                    
                     setError(''); // Limpa o erro anterior
                     navigate('/home'); // Redireciona para a página home
                 }
             })
             .catch((error) => {
                 // Se a resposta for 400, limpe a senha e exiba uma mensagem de erro
-                if (error.response && error.response.status === 400) {
+                if (error.response && error.response.status === 403) {
                     setError('Usuário ou senha incorretos.'); // Mensagem de erro para login incorreto
                     setSenha(''); // Limpar a senha ao detectar erro
                 } else {

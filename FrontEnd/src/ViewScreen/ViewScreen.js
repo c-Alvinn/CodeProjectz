@@ -5,6 +5,7 @@ import rehypeRaw from 'rehype-raw';
 import remarkGfm from 'remark-gfm';
 import './ViewScreen.css';
 import { useParams } from 'react-router-dom';
+import { TokenJWT } from '../Data/TokenJWT';
 
 function ViewScreen() {
     const { artigoID } = useParams();
@@ -14,13 +15,19 @@ function ViewScreen() {
     const [markdownData, setMarkdownData] = useState(null);
     const [error, setError] = useState('');
 
+    const token = TokenJWT();
+
     useEffect(() => {
         fetchArticleData();
     }, []);
 
     const fetchArticleData = async () => {
         try {
-            const response = await axios.get(`http://localhost:6419/artigo/id/${artigoID}`);
+            const response = await axios.get(`http://localhost:6419/artigo/id/${artigoID}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
             if (response.data) {
                 setArticleData(response.data);
                 fetchContentData(response.data.conteudo.conteudoID, setMarkdownData);
@@ -34,7 +41,10 @@ function ViewScreen() {
 
     const fetchContentData = async (conteudoID, setter) => {
         try {
-            const response = await axios.get(`http://localhost:6419/conteudo/id/${conteudoID}`, {
+            const response = await axios.get(`http://localhost:6419/conteudo/id/${conteudoID}`,{
+                headers: {
+                    Authorization: `Bearer ${token}`
+                },
                 responseType: 'blob'
             });
             const url = URL.createObjectURL(response.data);

@@ -62,10 +62,9 @@ function SignUpPage() {
     };
 
     axios
-      .post('http://localhost:6419/usuario/criar', userData)
+      .post('http://localhost:6419/usuario', userData)
       .then((response) => {
         console.log('Usuário cadastrado com sucesso:', response.data);
-        localStorage.setItem('signupSuccess', 'true');
         navigate('/'); // Redireciona para a página de login
       })
       .catch((error) => {

@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import './ProfileScreen.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { UserEmail } from '../Data/UserEmail';
+import { TokenJWT } from '../Data/TokenJWT';
 
 const EditProfileScreen = () => {
   const [user, setUser] = useState({
@@ -14,10 +16,17 @@ const EditProfileScreen = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
 
+  const userEmail = UserEmail();
+  const token = TokenJWT();
+
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const response = await axios.get('http://localhost:6419/usuario/perfil/1');
+        const response = await axios.get(`http://localhost:6419/usuario/perfil/${userEmail}`, {
+          headers: {
+              Authorization: `Bearer ${token}`
+          }
+      });
         setUser({
           nome: response.data.nome,
           sobrenome: response.data.sobrenome,
@@ -57,7 +66,11 @@ const EditProfileScreen = () => {
     }
 
     try {
-      const response = await axios.put('http://localhost:6419/usuario/perfil/alterar/1', user);
+      const response = await axios.put(`http://localhost:6419/usuario/perfil/alterar/${userEmail}`, user, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
       if (response.status === 200) {
         navigate('/profile');
       }

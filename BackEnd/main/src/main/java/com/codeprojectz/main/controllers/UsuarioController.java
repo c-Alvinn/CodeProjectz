@@ -92,14 +92,14 @@ public class UsuarioController {
         return ResponseEntity.status(HttpStatus.OK).body(usuarioRepository.save(usuarioModel));
     }
 
-    @PutMapping("/perfil/alterar/{id}")
-    public ResponseEntity<Object> updatePerfil(@PathVariable(value="id") Integer id,
+    @PutMapping("/perfil/alterar/{email}")
+    public ResponseEntity<Object> updatePerfil(@PathVariable(value="email") String email,
                                                 @RequestBody @Valid UsuarioUpdateDto usuarioUpdateDto) {
-        Optional<Usuario> usuarioO = usuarioRepository.findById(id);
-        if(usuarioO.isEmpty()) {
+        Usuario usuario = usuarioRepository.buscarPorEmail(email);
+        if(usuario == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuario not found.");
         }
-        var usuarioModel = usuarioO.get();
+        var usuarioModel = usuario;
         BeanUtils.copyProperties(usuarioUpdateDto, usuarioModel);
         return ResponseEntity.status(HttpStatus.OK).body(usuarioRepository.save(usuarioModel));
     }
@@ -116,16 +116,16 @@ public class UsuarioController {
     //     return ResponseEntity.status(HttpStatus.OK).body(user);
     // }
 
-    @GetMapping("/perfil/{id}")
-    public ResponseEntity<Object> exibirPerfil(@PathVariable(value = "id") Integer id){
-        Optional<Usuario> usuarioO = usuarioRepository.findById(id);
-        if(usuarioO.isEmpty()) {
+    @GetMapping("/perfil/{email}")
+    public ResponseEntity<Object> exibirPerfil(@PathVariable(value = "email") String email){
+        Usuario usuario = usuarioRepository.buscarPorEmail(email);
+        if(usuario == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuarios no found.");
         }
 
-        usuarioO.get().setUserID(-1);
-        usuarioO.get().setSenha("");
+        usuario.setUserID(-1);
+        usuario.setSenha("");
 
-        return ResponseEntity.status(HttpStatus.OK).body(usuarioO.get());
+        return ResponseEntity.status(HttpStatus.OK).body(usuario);
     }
 }

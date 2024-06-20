@@ -7,6 +7,6 @@ public record ArtigoRecordDto(
         @NotBlank String titulo,
         @NotBlank String descricao,
         @NotBlank String categoriaNome,
-        @NotNull int criadorID
+        @NotBlank String criadorEmail
 ) {
 }

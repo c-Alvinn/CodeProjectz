@@ -80,7 +80,7 @@ const EditProfileScreen = () => {
   };
 
   if (loading) {
-    return <div>Carregando...</div>;
+    return <div style={{marginTop:200}}>Carregando...</div>;
   }
 
   return (

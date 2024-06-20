@@ -13,7 +13,7 @@ function Sidebar() {
     };
 
     // Lista de caminhos onde a Sidebar não deve aparecer
-    const hiddenPaths = ['/', '/signup'];
+    const hiddenPaths = ['/', '/signup', '/tutorial'];
 
     // Verifica se a rota atual está na lista de rotas onde a Sidebar não deve ser exibida
     if (hiddenPaths.includes(location.pathname)) {

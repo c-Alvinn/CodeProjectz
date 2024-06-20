@@ -1,3 +1,9 @@
+.TutorialScreen{
+  max-width: 99vw;
+  margin-top: 15vh;
+  margin-bottom: 18vh;
+}
+
 .TutorialScreen-container {
     display: flex;
     flex-direction: column;

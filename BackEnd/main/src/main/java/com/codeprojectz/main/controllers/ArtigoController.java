@@ -128,7 +128,16 @@ public class ArtigoController {
     @GetMapping("/search/{text}")
     public ResponseEntity<List<Artigo>> searchArtigo(@PathVariable(value="text") String text){
         List<Artigo> lista = artigoRepository.findByTituloContainingIgnoreCaseOrDescricaoContainingIgnoreCaseOrCategoriaNomeContainingIgnoreCase(text, text, text);
-        if (lista == null) {
+        if (lista.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(lista);
+    }
+
+    @GetMapping("/creator/{email}")
+    public ResponseEntity<List<Artigo>> getByCriadorEmail(@PathVariable(value="email") String email){
+        List<Artigo> lista = artigoRepository.findByCriadorEmail(email);
+        if (lista.isEmpty()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
         return ResponseEntity.status(HttpStatus.OK).body(lista);

@@ -2,16 +2,20 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './HomePage.css';
 import Card from '../Card/Card';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { TokenJWT } from '../Data/TokenJWT';
 
 function HomePage() {
+    const navigate = useNavigate();
     const [artigos, setArtigos] = useState([]);
     const [categorias, setCategorias] = useState([]);
 
     const token = TokenJWT();
 
     useEffect(() => {
+        if (token == ''){
+            navigate('/');
+        }
         fetchArtigos();
         fetchCategorias();
     }, []);

@@ -1,4 +1,6 @@
-![Logo](FrontEnd/src/assets/images/LogoHeader.jpg)
+<div align=center>
+    <img src="./FrontEnd/src/assets/images/LogoHeader.jpg">
+</div>
 
 # CodeProjectz
 

@@ -11,10 +11,10 @@ const TutorialScreen = () => {
   const navigate = useNavigate();
   return (
     <div className='TutorialScreen'>
+      <div className="TutorialScreen-container">
       <div className='botao'>
       <button type="button" onClick={() => navigate('/')}>Voltar</button>
       </div>
-      <div className="TutorialScreen-container">
         <h1>Tutorial da Aplicação</h1>
 
         <section className="tutorial-section">

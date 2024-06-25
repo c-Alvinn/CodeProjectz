@@ -9,6 +9,9 @@ import addImg from '../assets/images/Add-image.png';
 const TutorialScreen = () => {
   return (
     <div className='TutorialScreen'>
+      <div className='botao'>
+      <button type="button" onClick={() => navigate('/')}>Voltar</button>
+      </div>
       <div className="TutorialScreen-container">
         <h1>Tutorial da Aplicação</h1>
 

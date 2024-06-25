@@ -37,6 +37,7 @@ function Sidebar() {
                 <button type='button' onClick={() => { toggleSidebar(); navigate('/profile'); }}>Perfil</button>
                 <button type='button' onClick={() => { toggleSidebar(); navigate('/add'); }}>Adicionar</button>
                 <button type='button' onClick={() => { toggleSidebar(); navigate('/'); }}>Sair</button>
+                <button type="button" onClick={() => navigate('/tutorial')}>Tutorial</button>
             </nav>
         </div>
     );

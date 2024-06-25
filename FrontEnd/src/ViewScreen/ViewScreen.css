@@ -73,3 +73,11 @@
   align-items: center;
 
 }
+
+.botao {
+  width: 100%;
+}
+
+.botao button {
+  width: 5%;
+}

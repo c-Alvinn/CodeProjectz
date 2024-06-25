@@ -187,11 +187,9 @@ function AddScreen() {
                         <button type="button" onClick={handleAddCategory}>Adicionar Categoria</button>
                     </div>
                 )}
-
                 <button type="submit">Adicionar</button>
-                <button type="button" onClick={handleTutorialClick}>
-                            Tutorial CodeProjecz
-                        </button>
+                <button type="button" onClick={handleTutorialClick}>Tutorial CodeProjecz</button>
+                <button type="button" onClick={() => navigate('/')}>Voltar</button>
             </form>
         </div>
     );

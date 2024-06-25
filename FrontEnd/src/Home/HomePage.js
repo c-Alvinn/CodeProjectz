@@ -22,7 +22,6 @@ function HomePage() {
 
     const fetchArtigos = async () => {
         try {
-            console.log(token);
             const response = await axios.get('http://localhost:6419/artigo/lastFive', {
                 headers: {
                     Authorization: `Bearer ${token}`

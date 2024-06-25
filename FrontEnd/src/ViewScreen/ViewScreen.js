@@ -6,8 +6,11 @@ import remarkGfm from 'remark-gfm';
 import './ViewScreen.css';
 import { useParams } from 'react-router-dom';
 import { TokenJWT } from '../Data/TokenJWT';
+import { useNavigate } from 'react-router-dom';
+
 
 function ViewScreen() {
+    const navigate = useNavigate();
     const { artigoID } = useParams();
     const [articleData, setArticleData] = useState(null);
     const [imageData, setImageData] = useState(null);

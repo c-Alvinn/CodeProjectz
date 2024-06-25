@@ -4,9 +4,11 @@ import signUpImg from '../assets/images/SignUp-image.png';
 import loginImg from '../assets/images/Login-image.png';
 import viewScreenImg from '../assets/images/View-image.png';
 import addImg from '../assets/images/Add-image.png';
+import { useNavigate } from 'react-router-dom';
 
 
 const TutorialScreen = () => {
+  const navigate = useNavigate();
   return (
     <div className='TutorialScreen'>
       <div className='botao'>

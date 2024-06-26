@@ -13,7 +13,7 @@ const TutorialScreen = () => {
     <div className='TutorialScreen'>
       <div className="TutorialScreen-container">
       <div className='botao'>
-      <button type="button" onClick={() => navigate('/')}>Voltar</button>
+      <button type="button" onClick={() => navigate('/home')}>Voltar</button>
       </div>
         <h1>Tutorial da Aplicação</h1>
 

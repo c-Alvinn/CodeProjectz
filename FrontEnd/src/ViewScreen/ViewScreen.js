@@ -75,10 +75,10 @@ function ViewScreen() {
 
     return (
         <div className="article-screen">
-            <div className='botao'>
-                <button type="button" onClick={() => navigate('/')}>Voltar</button>
-            </div>
             <div className="article-container">
+                <div className='botao'>
+                    <button type="button" onClick={() => navigate('/home')}>Voltar</button>
+                </div>
                 {imageData && <img className="article-image" src={imageData} alt="Article visual content" />}
                 <div className='line'></div>
                 <h1 className="article-title">{articleData.titulo}</h1>

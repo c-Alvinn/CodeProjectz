@@ -189,7 +189,7 @@ function AddScreen() {
                 )}
                 <button type="submit">Adicionar</button>
                 <button type="button" onClick={handleTutorialClick}>Tutorial CodeProjecz</button>
-                <button type="button" onClick={() => navigate('/')}>Voltar</button>
+                <button type="button" onClick={() => navigate('/home')}>Voltar</button>
             </form>
         </div>
     );

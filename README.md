@@ -4,7 +4,7 @@
     <img src="./FrontEnd/src/assets/images/LogoHeader.jpg" alt="Logo do CodeProjectZ">
 </div>
 
-# CodeProjectZ
+# CodeProjectz
 
 ## Índice
 
@@ -18,7 +18,7 @@
 
 ## Sobre
 
-O **CodeProjectZ** é uma plataforma inovadora para criação e gerenciamento de artigos e projetos. Ideal para desenvolvedores, entusiastas de tecnologia e educadores, o CodeProjectZ permite que os usuários publiquem, organizem e acessem conteúdos educacionais sobre diversas áreas, como desenvolvimento web, programação, jogos e outras áreas de interesse, onde qualquer aluno e professor pode compartilhar artigos e visualizar artigos da comunidade. A plataforma é construída com um backend robusto em Java Spring Boot e um frontend moderno em React, proporcionando uma experiência de usuário fluida e responsiva.
+O **CodeProjectz** é uma plataforma inovadora para criação e gerenciamento de artigos e projetos. Ideal para desenvolvedores, entusiastas de tecnologia e educadores, o CodeProjectz permite que os usuários publiquem, organizem e acessem conteúdos educacionais sobre diversas áreas, como desenvolvimento web, programação, jogos e outras áreas de interesse, onde qualquer aluno e professor pode compartilhar artigos e visualizar artigos da comunidade. A plataforma é construída com um backend robusto em Java Spring Boot e um frontend moderno em React, proporcionando uma experiência de usuário fluida e responsiva.
 
 ## Instalação
 
@@ -34,8 +34,8 @@ Antes de iniciar, certifique-se de ter as seguintes ferramentas instaladas:
 
 1. Clone o repositório:
     ```sh
-    git clone https://github.com/yourusername/CodeProjectZ.git
-    cd CodeProjectZ/backend
+    git clone https://github.com/yourusername/CodeProjectz.git
+    cd CodeProjectz/backend
     ```
 
 2. Configure o banco de dados no arquivo `application.properties`:

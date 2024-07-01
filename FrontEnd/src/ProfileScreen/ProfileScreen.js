@@ -22,7 +22,7 @@ const ProfileScreen = () => {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const response = await axios.get(`http://localhost:6419/usuario/perfil/${userEmail}`, {
+        const response = await axios.get(`http://192.168.7.21:6419/usuario/perfil/${userEmail}`, {
           headers: {
               Authorization: `Bearer ${token}`
           }

@@ -26,7 +26,7 @@ function ViewScreen() {
 
     const fetchArticleData = async () => {
         try {
-            const response = await axios.get(`http://localhost:6419/artigo/id/${artigoID}`, {
+            const response = await axios.get(`http://192.168.7.21:6419/artigo/id/${artigoID}`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -44,7 +44,7 @@ function ViewScreen() {
 
     const fetchContentData = async (conteudoID, setter) => {
         try {
-            const response = await axios.get(`http://localhost:6419/conteudo/id/${conteudoID}`,{
+            const response = await axios.get(`http://192.168.7.21:6419/conteudo/id/${conteudoID}`,{
                 headers: {
                     Authorization: `Bearer ${token}`
                 },

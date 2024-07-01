@@ -30,7 +30,7 @@ function LoginPage() {
             senha, // Enviando 'senha' em vez de 'password'
         };
 
-        axios.post('http://localhost:6419/login', userData) // Certifique-se de que o endpoint está correto
+        axios.post('http://192.168.7.21:6419/login', userData) // Certifique-se de que o endpoint está correto
             .then((response) => {
                 if (response.status === 200) { // Se a resposta for bem-sucedida
                     

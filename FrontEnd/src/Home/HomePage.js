@@ -22,7 +22,7 @@ function HomePage() {
 
     const fetchArtigos = async () => {
         try {
-            const response = await axios.get('http://localhost:6419/artigo/lastFive', {
+            const response = await axios.get('http://192.168.7.21:6419/artigo/lastFive', {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -40,7 +40,7 @@ function HomePage() {
 
     const fetchArtigoCompleto = async (artigo) => {
         try {
-            const resImagem = await axios.get(`http://localhost:6419/conteudo/id/${artigo.imagem.conteudoID}`,{
+            const resImagem = await axios.get(`http://192.168.7.21:6419/conteudo/id/${artigo.imagem.conteudoID}`,{
                     headers: {
                         Authorization: `Bearer ${token}`
                     },
@@ -62,7 +62,7 @@ function HomePage() {
 
     const fetchCategorias = async () => {
         try {
-            const response = await axios.get('http://localhost:6419/categoria', {
+            const response = await axios.get('http://192.168.7.21:6419/categoria', {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -82,7 +82,7 @@ function HomePage() {
         useEffect(() => {
             const fetchLastFiveArticles = async () => {
                 try {
-                    const response = await axios.get(`http://localhost:6419/artigo/lastFive/${categoryId}`, {
+                    const response = await axios.get(`http://192.168.7.21:6419/artigo/lastFive/${categoryId}`, {
                         headers: {
                             Authorization: `Bearer ${token}`
                         }
@@ -104,7 +104,7 @@ function HomePage() {
     
         const fetchArtigoImageURL = async (conteudoID) => {
             try {
-                const resImagem = await axios.get(`http://localhost:6419/conteudo/id/${conteudoID}`,{
+                const resImagem = await axios.get(`http://192.168.7.21:6419/conteudo/id/${conteudoID}`,{
                     headers: {
                         Authorization: `Bearer ${token}`
                     },

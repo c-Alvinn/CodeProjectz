@@ -18,7 +18,7 @@ function SearchScreen() {
 
     const fetchArtigos = async (searchTerm) => {
         try {
-            const response = await axios.get(`http://localhost:6419/artigo/search/${searchTerm}`, {
+            const response = await axios.get(`http://192.168.7.21:6419/artigo/search/${searchTerm}`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -37,7 +37,7 @@ function SearchScreen() {
 
     const fetchArtigoCompleto = async (artigo) => {
         try {
-            const resImagem = await axios.get(`http://localhost:6419/conteudo/id/${artigo.imagem.conteudoID}`,{
+            const resImagem = await axios.get(`http://192.168.7.21:6419/conteudo/id/${artigo.imagem.conteudoID}`,{
                 headers: {
                     Authorization: `Bearer ${token}`
                 },

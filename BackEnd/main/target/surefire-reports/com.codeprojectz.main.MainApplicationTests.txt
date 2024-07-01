@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.codeprojectz.main.MainApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 12.83 s -- in com.codeprojectz.main.MainApplicationTests

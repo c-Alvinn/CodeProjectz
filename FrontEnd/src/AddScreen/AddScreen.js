@@ -24,7 +24,7 @@ function AddScreen() {
     }, []);
 
     const fetchCategories = () => {
-        axios.get('http://localhost:6419/categoria', {
+        axios.get('http://192.168.7.21:6419/categoria', {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -52,7 +52,7 @@ function AddScreen() {
 
     const handleAddCategory = () => {
         if (customCategory.trim() !== '') {
-            axios.post('http://localhost:6419/categoria', { nome: customCategory }, {
+            axios.post('http://192.168.7.21:6419/categoria', { nome: customCategory }, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -73,7 +73,7 @@ function AddScreen() {
         const formData = new FormData();
         formData.append("conteudo", file);
 
-        const response = await axios.post('http://localhost:6419/conteudo', formData, {
+        const response = await axios.post('http://192.168.7.21:6419/conteudo', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
                 Authorization: `Bearer ${token}`
@@ -113,7 +113,7 @@ function AddScreen() {
                 conteudoID: markdownId // Adiciona a referência do conteúdo Markdown ao artigo
             };
 
-            await axios.post('http://localhost:6419/artigo', artigoData, {
+            await axios.post('http://192.168.7.21:6419/artigo', artigoData, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }

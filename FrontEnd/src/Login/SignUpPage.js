@@ -62,7 +62,7 @@ function SignUpPage() {
     };
 
     axios
-      .post('http://localhost:6419/usuario', userData)
+      .post('http://192.168.7.21:6419/usuario', userData)
       .then((response) => {
         console.log('Usuário cadastrado com sucesso:', response.data);
         navigate('/'); // Redireciona para a página de login

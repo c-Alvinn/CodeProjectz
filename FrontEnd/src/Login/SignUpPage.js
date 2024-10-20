@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './LoginPage.css';
+import ambiente from './../ambiente.js';
+
 
 function SignUpPage() {
   const [nome, setNome] = useState('');
@@ -62,7 +64,7 @@ function SignUpPage() {
     };
 
     axios
-      .post('http://192.168.7.21:6419/usuario', userData)
+      .post(`${ambiente.localHost}/usuario`, userData)
       .then((response) => {
         console.log('Usuário cadastrado com sucesso:', response.data);
         navigate('/'); // Redireciona para a página de login

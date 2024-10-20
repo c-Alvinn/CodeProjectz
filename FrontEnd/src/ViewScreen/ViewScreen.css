@@ -3,23 +3,19 @@
   justify-content: center;
   align-items: center;
   padding: 20px;
-  margin-top: 10%;
+  margin-top: 5%; /* Ajustado para melhor layout */
 }
 
 .article-container {
   width: 80%;
-  max-width: 1000px; /* Limitando a largura máxima */
+  max-width: 1000px;
   background: #333;
   padding: 30px;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   display: flex;
-  flex-direction: column; /* Organiza os itens verticalmente */
-  align-items: center; /* Centraliza os itens */
-}
-
-.article-image{
-  width: 60%;
+  flex-direction: column;
+  align-items: center;
 }
 
 .article-title {
@@ -27,57 +23,38 @@
   color: #ccc;
 }
 
-.article-instructor, .article-category {
-  color: #ddd;
-}
-
-.article-content {
-  color: #ddd;
-  line-height: 1.6;
-  margin-bottom: 20px; /* Adiciona espaço antes das tags */
-  width: 90%;
-}
-
-.tags {
+.ai-features {
+  margin-top: 20px;
+  width: 100%;
   display: flex;
-  flex-wrap: wrap;
-  gap: 10px; 
+  flex-direction: column;
+  gap: 10px;
 }
 
-.tag {
-  padding: 5px 10px;
-  background-color: #555; 
-  color: #eee; 
-  border-radius: 5px; 
-  font-size: 0.8em; 
-  transition: transform 0.2s ease;
+.ai-features input {
+  padding: 10px;
+  width: 100%;
+  max-width: 500px;
+  border-radius: 5px;
+  border: 1px solid #555;
+  background: #444;
+  color: #fff;
 }
 
-.tag:hover {
-  box-shadow: 0px 0px 4px 4px #76ABAE;
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #76ABAE;
+  color: white;
   cursor: pointer;
-  transform: translateY(-2px); 
+  transition: background 0.3s ease;
 }
 
-.line {
-  margin: 25px 0;
-  height: 2px;
-  width: 100%;
-  background-image: linear-gradient(to right, transparent, #76ABAE, transparent);
+button:hover {
+  background-color: #5e8e91;
 }
 
-.caixa {
-  width: 90%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-}
-
-.botao {
-  width: 100%;
-}
-
-.botao button {
-  width: 5%;
+p {
+  color: #ddd;
 }

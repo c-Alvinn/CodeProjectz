@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { UserEmail } from '../Data/UserEmail';
 import { TokenJWT } from '../Data/TokenJWT';
+import ambiente from './../ambiente.js';
 
 const EditProfileScreen = () => {
   const [user, setUser] = useState({
@@ -22,7 +23,7 @@ const EditProfileScreen = () => {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const response = await axios.get(`http://192.168.7.21:6419/usuario/perfil/${userEmail}`, {
+        const response = await axios.get(`${ambiente.localHost}/usuario/perfil/${userEmail}`, {
           headers: {
               Authorization: `Bearer ${token}`
           }
@@ -66,7 +67,7 @@ const EditProfileScreen = () => {
     }
 
     try {
-      const response = await axios.put(`http://192.168.7.21:6419/usuario/perfil/alterar/${userEmail}`, user, {
+      const response = await axios.put(`${ambiente.localHost}/usuario/perfil/alterar/${userEmail}`, user, {
         headers: {
             Authorization: `Bearer ${token}`
         }

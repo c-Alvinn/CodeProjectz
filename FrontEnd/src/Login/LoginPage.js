@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios'; // Importa Axios para fazer requisições HTTP
 import { useNavigate } from 'react-router-dom';
 import './LoginPage.css';
+import ambiente from './../ambiente.js';
 
 function LoginPage() {
     const navigate = useNavigate();
@@ -30,7 +31,7 @@ function LoginPage() {
             senha, // Enviando 'senha' em vez de 'password'
         };
 
-        axios.post('http://192.168.7.21:6419/login', userData) // Certifique-se de que o endpoint está correto
+        axios.post(`${ambiente.localHost}/login`, userData) // Certifique-se de que o endpoint está correto
             .then((response) => {
                 if (response.status === 200) { // Se a resposta for bem-sucedida
                     

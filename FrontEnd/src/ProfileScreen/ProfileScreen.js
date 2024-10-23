@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { UserEmail } from '../Data/UserEmail';
 import { TokenJWT } from '../Data/TokenJWT';
+import ambiente from './../ambiente.js';
 
 const ProfileScreen = () => {
   const [user, setUser] = useState(null);
@@ -22,7 +23,7 @@ const ProfileScreen = () => {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const response = await axios.get(`http://192.168.7.21:6419/usuario/perfil/${userEmail}`, {
+        const response = await axios.get(`${ambiente.localHost}/usuario/perfil/${userEmail}`, {
           headers: {
               Authorization: `Bearer ${token}`
           }

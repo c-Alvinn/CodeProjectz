@@ -76,7 +76,7 @@ function ViewScreen() {
     const summarizeArticle = async () => {
         setLoading(true); // Ativa o spinner
         try {
-            const result = await window.model.generateContent(markdownString);
+            const result = await window.model.generateContent(`Resuma o seguinte artigo, resumidamente e claramente, em português, usando uma linguagem simples, profissional e direta: ${markdownString}`);
             const response = await result.response.text();
             setSummary(response);
         } catch (error) {
@@ -91,7 +91,7 @@ function ViewScreen() {
         setLoading(true); // Ativa o spinner
         try {
             const result = await window.model.generateContent(
-                `${markdownString}\nPergunta: ${question}`
+                `${markdownString}\n Baseando-se no artigo dado, responda em português a seguinte pergunta usando uma linguagem simples, profissional e direta: ${question}`
             );
             const response = await result.response.text();
             setAnswer(response);

@@ -13,7 +13,6 @@
   overflow-x: auto;
   overflow-y: hidden;
   white-space: nowrap;
-  padding: 20px 0;
 }
 
 .scroll-container>* {
@@ -24,5 +23,5 @@
 
 h2 {
   margin-left: 20px;
-  margin-top: 20px;
+  margin-bottom: 0px;
 }
